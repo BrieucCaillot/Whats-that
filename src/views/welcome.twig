@@ -1,0 +1,49 @@
+{% extends './_layout.twig' %}
+
+{% set title = 'Bienvenue' %}
+
+{% block content %}
+    <main>
+        {# SECTION WORD OF THE DAY #}
+        <section class="section pd-t1">
+            <div class="container">
+                <div class="columns pd-t2 title__underlined">
+                    <div class="column pd0">
+                        <div class="level">
+                            <h2 class="text ft-1 is-tertiary title is-size-5-desktop is-size-4-tablet is-size-5-mobile has-text-left">
+                                Bienvenue
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="columns pd-t2">
+                    <div class="column pd0">
+                        <div class="level">
+                            <p class="text ft-2">
+                                « What’s that » vous propose de rechercher une définition
+                                donnée par un autre utilisateur, et de donner votre propre définition. Si votre définition
+                                atteint 3 likes de la part des autres utilisateurs, celle-ci est acceptée.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="columns pd-t2">
+                    <div class="column">
+                        <div class="level is-mobile">
+                            <div class="level-item">
+                                <a href="/signup">
+                                    <button class="button button__redirect text ft-2" type="button">Inscription</button>
+                                </a>
+                            </div>
+                            <div class="level-item">
+                                <a href="/signin">
+                                    <button class="button button__redirect text ft-2" type="button">Connexion</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock %}

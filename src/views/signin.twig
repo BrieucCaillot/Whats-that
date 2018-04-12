@@ -1,0 +1,84 @@
+{% extends './_layout.twig' %}
+
+{% set title = 'Inscription' %}
+
+{% block content %}
+    <main>
+        {# SECTION SIGNUP #}
+        <section class="section pd-t1">
+            <div class="container">
+                <div class="columns pd-t2 title__underlined">
+                    <div class="column pd0">
+                        <div class="level">
+                            <h1 class="text ft-1 is-tertiary title is-size-5-desktop is-size-4-tablet is-size-5-mobile has-text-left">
+                                Connexion
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="columns pd-t2">
+                    <div class="column pd0">
+                        <div class="level">
+                            <p class="text ft-2 is-secondary">
+                                Pour pouvoir donner une définition et sauvegarder des mots, vous devez d’abord vous
+                                inscrire.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <form action="/signup">
+                    <div class="columns">
+                        <div class="column">
+                            <div class="level is-mobile">
+                                <div class="level-item p-rel">
+                                    <span class="input-custom input-custom__form input--hoshi over-hide">
+                                        <input id="input-search-email" class="input__field input__field--hoshi text is-secondary is-size-6"
+                                                type="email"/>
+                                        <label for="input-search-email"
+                                               class="input__label input__label--hoshi input__label--hoshi-color-1">
+                                            <span class="input__label-content input__label-content--hoshi text ft-1 is-secondary">Email</span>
+                                        </label>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="columns">
+                        <div class="column">
+                            <div class="level is-mobile">
+                                <div class="level-item p-rel">
+                                    <span class="input-custom input-custom__form input--hoshi over-hide">
+                                        <input id="input-search-password" class="input__field input__field--hoshi text is-secondary is-size-6"
+                                                type="password"/>
+                                        <label for="input-search-password"
+                                               class="input__label input__label--hoshi input__label--hoshi-color-1">
+                                            <span class="input__label-content input__label-content--hoshi text ft-1 is-secondary">Mot de passe</span>
+                                        </label>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="columns pd-t2">
+                        <div class="column">
+                            <div class="level  is-mobile">
+                                <a class="mauto-w" href="/signup">
+                                    <button class="button button__redirect text ft-2" type="submit">Connexion
+                                    </button>
+                                </a>
+                            </div>
+                            <div class="level">
+                                <div class="level-item">
+                                    <p class="text ft-1 is-size-7 has-text-centered">
+                                        Si vous n'êtes toujours pas inscrit,
+                                        vous pouvez vous <a href="/signup" class="text is-primary">inscrire</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+{% endblock %}

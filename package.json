@@ -1,0 +1,29 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "test",
+  "main": "app.js",
+  "scripts": {
+    "development": "grunt && node --inspect --max_old_space_size=4096 ./app.js",
+    "start": "grunt && pm2 start ./app.js --watch --name=whats-that"
+  },
+  "author": "Brieuc Caillot <brieuc>",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "fs": "0.0.1-security",
+    "js-yaml": "^3.11.0",
+    "json-stringify": "^1.0.0",
+    "npm": "^5.8.0",
+    "twig": "^1.10.5"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babelify": "^8.0.0",
+    "grunt": "^1.0.2",
+    "grunt-browserify": "^5.2.0",
+    "grunt-contrib-uglify": "^3.3.0",
+    "grunt-svg-sprite": "^1.4.0"
+  }
+}

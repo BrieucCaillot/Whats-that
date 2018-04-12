@@ -1,0 +1,34 @@
+/**
+ * Imports SCSS File
+ * @author : Brieuc Caillot
+ */
+
+// Compass Imports for Utilities and Mixins
+@import "compass/reset";
+@import "compass/utilities";
+@import "compass/css3";
+
+//BULMA
+@import "vendors/bulma/sass/utilities/initial-variables";
+
+// Override variables here
+// You can add new ones or update existing ones:
+$primary: #E94858;
+//$link: #323232;
+//$info: #323232;
+//$success: $green;
+//$warning: $yellow;
+//$danger: $red;
+//$light: #DBDBDB;
+//$dark: $grey-darker;
+//$text: $grey-dark;
+
+@import "vendors/bulma/bulma";
+
+// Imports
+@import "mixins-placeholders";
+@import "common";
+@import "components";
+@import "templates";
+
+

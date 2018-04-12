@@ -1,0 +1,52 @@
+main {
+
+  #search-section {
+    .level:first-child {
+      margin-bottom: 0 !important;
+    }
+    .level:last-child {
+      max-width: 430px;
+      margin: 0 auto;
+      .icon-small {
+        position: absolute;
+        right: 0;
+        top: 50%;
+      }
+    }
+  }
+
+  .title {
+    &__underlined {
+      border-bottom: 5px solid map-get($colors, tertiary);
+      padding-bottom: 10px;
+    }
+    &__word-title {
+      .level-left {
+        max-width: 270px;
+      }
+    }
+  }
+
+  .post {
+    &__author {
+      margin-bottom: 0.8rem !important;
+      span:last-of-type {
+        padding-left: 3px;
+      }
+    }
+    &__content {
+      p {
+        line-height: 1.4rem;
+      }
+    }
+  }
+
+  section:first-child {
+    padding-top: 1.5rem;
+  }
+
+  section:last-child {
+    padding-bottom: calc(3rem + 64px);
+  }
+}
+

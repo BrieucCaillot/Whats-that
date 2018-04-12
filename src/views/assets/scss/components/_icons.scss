@@ -1,0 +1,69 @@
+.icon-small {
+  position: relative;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+  span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  &__white {
+    background-color: map-get($colors, white);
+    &.icon-search {
+      span {
+        @extend .svg-assets--sprites--search-primary;
+        @extend .svg-assets--sprites--search-primary-dims;
+        @include custom-img(1.4, -5px -5px);
+      }
+    }
+    &.icon-bookmark {
+      span {
+        @extend .svg-assets--sprites--bookmark-primary;
+        @extend .svg-assets--sprites--bookmark-primary-dims;
+        @include custom-img(0.8, -9px -7px);
+      }
+    }
+    &.icon-user {
+      span {
+        @extend .svg-assets--sprites--user-primary;
+        @extend .svg-assets--sprites--user-primary-dims;
+        @include custom-img(0.8, -9px -9px);
+      }
+    }
+    &.icon-home {
+      span {
+        @extend .svg-assets--sprites--home-primary;
+        @extend .svg-assets--sprites--home-primary-dims;
+        @include custom-img(0.7, -13px -13px);
+      }
+    }
+  }
+  &__primary {
+    background-color: $primary;
+    &.icon-pen {
+      span {
+        @extend .svg-assets--sprites--pen-white;
+        @extend .svg-assets--sprites--pen-white-dims;
+        @include custom-img(0.7, -10px -10px);
+      }
+    }
+    &.icon-bookmark {
+      span {
+        @extend .svg-assets--sprites--bookmark-white;
+        @extend .svg-assets--sprites--bookmark-white-dims;
+        @include custom-img(0.7, -9px -7px);
+      }
+      &__active {
+        span {
+          @extend .svg-assets--sprites--bookmarked-white;
+          @extend .svg-assets--sprites--bookmarked-white-dims;
+          @include custom-img(0.7, -9px -7px);
+        }
+      }
+    }
+  }
+}
+

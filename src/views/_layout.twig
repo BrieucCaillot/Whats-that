@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- META -->
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta property="og:locale" content="en_US"/>
+    <meta property="og:locale:alternate" content="en_US"/>
+    <meta property="og:title" content="Title"/>
+    <meta property="og:url" content="url"/>
+    <meta property="og:type" content="type"/>
+    <meta property="og:image" content="image_url"/>
+    <meta property="og:image:secure_url" content="img"/>
+    <meta property="og:description" content="description"/>
+    <meta name="description" content="Description"/>
+    <meta name="keywords" content="keyword"/>
+
+    <!-- LINK -->
+    {#<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">#}
+    <link rel="icon" type="image/png" href="assets/img/fav-icon.png"/>
+    <link href="https://fonts.googleapis.com/css?family=Pacifico|Roboto+Slab" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/app.css">
+
+    <title>
+        {% if title is defined %}
+            {{ title }}
+        {% endif %}
+    </title>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header background is-secondary">
+    <div class="container">
+        <nav class="navbar background is-secondary">
+            <a class="mauto-w dblock" href="/">
+                <img class="mauto-w dblock" src="assets/img/logo.svg" alt="logo">
+            </a>
+        </nav>
+    </div>
+</header>
+
+<!-- CONTENT -->
+{% block content %}{% endblock %}
+
+<!-- FOOTER -->
+<footer class="full-w background is-tertiary">
+    <div class="columns is-vcentered">
+        <div class="column">
+            <div class="level is-mobile">
+                <div class="level-item">
+                    <a href="/" class="icon-small icon-small__white icon-home">
+                        <span class="dblock"></span>
+                    </a>
+                </div>
+                <a href="/results" class="level-item">
+                    <div class="icon-small icon-small__white icon-search">
+                        <span class="dblock"></span>
+                    </div>
+                </a>
+                <a href="/bookmarks" class="level-item">
+                    <div class="icon-small icon-small__white icon-bookmark">
+                        <span class="dblock"></span>
+                    </div>
+                </a>
+                <a href="/welcome" class="level-item">
+                    <div class="icon-small icon-small__white icon-user">
+                        <span class="dblock"></span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "Organization",
+        "name": "name",
+        "url": "siteurl",
+        "logo": "../public/assets/img/logo.svg"
+    }
+
+
+
+</script>
+{#<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>#}
+<script src="assets/js/script.min.js"></script>
+
+</body>
+</html>

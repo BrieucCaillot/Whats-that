@@ -1,0 +1,104 @@
+%svg-common {
+	background: url("../svg/sprite.svg") no-repeat;
+}
+
+.svg-assets--sprites--bookmark-primary {
+	@extend %svg-common;
+	background-position: 78.46153846153847% 0;
+}
+
+.svg-assets--sprites--bookmark-primary-dims {
+	width: 14px;
+	height: 19px;
+}
+
+.svg-assets--sprites--bookmark-white {
+	@extend %svg-common;
+	background-position: 78.46153846153847% 40.42553191489362%;
+}
+
+.svg-assets--sprites--bookmark-white-dims {
+	width: 14px;
+	height: 19px;
+}
+
+.svg-assets--sprites--bookmarked-primary {
+	@extend %svg-common;
+	background-position: 100% 0;
+}
+
+.svg-assets--sprites--bookmarked-primary-dims {
+	width: 14px;
+	height: 19px;
+}
+
+.svg-assets--sprites--bookmarked-white {
+	@extend %svg-common;
+	background-position: 100% 40.42553191489362%;
+}
+
+.svg-assets--sprites--bookmarked-white-dims {
+	width: 14px;
+	height: 19px;
+}
+
+.svg-assets--sprites--dislike-white {
+	@extend %svg-common;
+	background-position: 47.95539033457249% 0;
+}
+
+.svg-assets--sprites--dislike-white-dims {
+	width: 25.2px;
+	height: 22.5px;
+}
+
+.svg-assets--sprites--home-primary {
+	@extend %svg-common;
+	background-position: 0 0;
+}
+
+.svg-assets--sprites--home-primary-dims {
+	width: 25.8px;
+	height: 25.4px;
+}
+
+.svg-assets--sprites--pen-white {
+	@extend %svg-common;
+	background-position: 42.35294117647059% 54.623655913978496%;
+}
+
+.svg-assets--sprites--pen-white-dims {
+	width: 19.5px;
+	height: 19.5px;
+}
+
+.svg-assets--sprites--search-primary {
+	@extend %svg-common;
+	background-position: 26.470588235294116% 87.0909090909091%;
+}
+
+.svg-assets--sprites--search-primary-dims {
+	width: 11px;
+	height: 11px;
+}
+
+.svg-assets--sprites--thumbs-up-white {
+	@extend %svg-common;
+	background-position: 0 58.39080459770115%;
+}
+
+.svg-assets--sprites--thumbs-up-white-dims {
+	width: 25.2px;
+	height: 22.5px;
+}
+
+.svg-assets--sprites--user-primary {
+	@extend %svg-common;
+	background-position: 0 99.79166666666667%;
+}
+
+.svg-assets--sprites--user-primary-dims {
+	width: 18px;
+	height: 18px;
+}
+

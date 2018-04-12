@@ -1,0 +1,7 @@
+.textarea {
+  border: 2px solid map-get($colors, tertiary);
+  &:focus {
+    border: 2px solid $primary;
+    box-shadow: none;
+  }
+}

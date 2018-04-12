@@ -1,0 +1,33 @@
+.text {
+  &.is-white {
+    color: map_get($colors, white);
+  }
+
+  &.is-black {
+    color: map_get($colors, black);
+  }
+
+  &.is-primary {
+    color: $primary;
+  }
+
+  &.is-secondary {
+    color: map_get($colors, secondary);
+  }
+
+  &.is-tertiary {
+    color: map_get($colors, tertiary);
+  }
+
+  &.ft-1 {
+    font-family: 'GTWalsheim', serif;
+  }
+
+  &.ft-2 {
+    font-family: 'Roboto Slab', serif;
+  }
+
+  &.ft-3 {
+    font-family: 'Pacifico', cursive;
+  }
+}

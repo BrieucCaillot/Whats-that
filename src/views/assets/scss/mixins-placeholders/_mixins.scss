@@ -1,0 +1,7 @@
+//Globals
+@mixin custom-img($scale, $margin) {
+  transform: scale($scale);
+  margin: $margin;
+}
+
+

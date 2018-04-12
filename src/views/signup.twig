@@ -1,0 +1,145 @@
+{% extends './_layout.twig' %}
+
+{% set title = 'Inscription' %}
+
+{% block content %}
+    <main>
+        {# SECTION SIGNUP #}
+        <section class="section pd-t1">
+            <div class="container">
+                <div class="columns pd-t2 title__underlined">
+                    <div class="column pd0">
+                        <div class="level">
+                            <h1 class="text ft-1 is-tertiary title is-size-5-desktop is-size-4-tablet is-size-5-mobile has-text-left">
+                                Inscription
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="columns pd-t2">
+                    <div class="column pd0">
+                        <div class="level">
+                            <p class="text ft-2 is-secondary">
+                                Pour pouvoir donner une définition et sauvegarder des mots, vous devez d’abord vous
+                                inscrire.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <form action="/signup">
+                    <div class="columns">
+                        <div class="column">
+                            <div class="level is-mobile">
+                                <div class="level-item p-rel">
+                                    <span class="input-custom input-custom__form input--hoshi over-hide">
+                                        <input id="input-search-lastname"
+                                               class="input__field input__field--hoshi text is-secondary is-size-6"
+                                               type="text"/>
+                                        <label for="input-search-lastname"
+                                               class="input__label input__label--hoshi input__label--hoshi-color-1">
+                                            <span class="input__label-content input__label-content--hoshi text ft-1 is-secondary">Nom</span>
+                                        </label>
+                                    </span>
+                                </div>
+                                <div class="level-item p-rel">
+                                    <span class="input-custom input-custom__form input--hoshi over-hide">
+                                        <input id="input-search-firstname"
+                                               class="input__field input__field--hoshi text is-secondary is-size-6"
+                                               type="text"/>
+                                        <label for="input-search-firstname"
+                                               class="input__label input__label--hoshi input__label--hoshi-color-1">
+                                            <span class="input__label-content input__label-content--hoshi text ft-1 is-secondary">Prénom</span>
+                                        </label>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="columns">
+                        <div class="column">
+                            <div class="level is-mobile">
+                                <div class="level-item p-rel">
+                                    <span class="input-custom input-custom__form input--hoshi over-hide">
+                                        <input id="input-search-email"
+                                               class="input__field input__field--hoshi text is-secondary is-size-6"
+                                               type="email"/>
+                                        <label for="input-search-email"
+                                               class="input__label input__label--hoshi input__label--hoshi-color-1">
+                                            <span class="input__label-content input__label-content--hoshi text ft-1 is-secondary">Email</span>
+                                        </label>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="columns pd-t3">
+                        <div class="column">
+                            <div class="control">
+                                <label class="radio text ft-1 is-secondary">
+                                    <input type="radio" name="answer">
+                                    Homme
+                                </label>
+                                <label class="radio text ft-1 is-secondary">
+                                    <input type="radio" name="answer">
+                                    Femme
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="columns">
+                        <div class="column">
+                            <div class="level is-mobile">
+                                <div class="level-item p-rel">
+                                    <span class="input-custom input-custom__form input--hoshi over-hide">
+                                        <input id="input-search-password"
+                                               class="input__field input__field--hoshi text is-secondary is-size-6"
+                                               type="password"/>
+                                        <label for="input-search-password"
+                                               class="input__label input__label--hoshi input__label--hoshi-color-1">
+                                            <span class="input__label-content input__label-content--hoshi text ft-1 is-secondary">Mot de passe</span>
+                                        </label>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="columns">
+                        <div class="column">
+                            <div class="level is-mobile">
+                                <div class="level-item p-rel">
+                                    <span class="input-custom input-custom__form input--hoshi over-hide">
+                                        <input id="input-search-repassword"
+                                               class="input__field input__field--hoshi text is-secondary is-size-6"
+                                               type="password"/>
+                                        <label for="input-search-repassword"
+                                               class="input__label input__label--hoshi input__label--hoshi-color-1">
+                                            <span class="input__label-content input__label-content--hoshi text ft-1 is-secondary">Confirmer mot de passe</span>
+                                        </label>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="columns pd-t2">
+                        <div class="column">
+                            <div class="level  is-mobile">
+                                <a class="mauto-w" href="/signup">
+                                    <button class="button button__redirect text ft-2" type="submit">Inscription
+                                    </button>
+                                </a>
+                            </div>
+                            <div class="level">
+                                <div class="level-item">
+                                    <p class="text ft-1 is-size-7 has-text-centered">
+                                        Si vous êtes déja inscrit,
+                                        vous pouvez vous <a href="/signin" class="text is-primary">connecter</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+{% endblock %}

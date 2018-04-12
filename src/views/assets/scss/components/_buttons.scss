@@ -1,0 +1,48 @@
+.button, button {
+  border: none !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+  &:focus {
+    border: none;
+    color: map-get($colors, white);
+  }
+  &.active, &:hover {
+    background-color: $primary;
+    span {
+      color: map-get($colors, white);
+    }
+  }
+  &__action {
+    position: relative;
+    color: map-get($colors, white);
+    background-color: map-get($colors, secondary);
+    &__like {
+      &:before {
+        @extend .svg-assets--sprites--thumbs-up-white;
+        @extend .svg-assets--sprites--thumbs-up-white-dims;
+        @include custom-img(0.8, -1px 9px 0 0);
+        content: '';
+        display: block;
+      }
+    }
+    &__dislike {
+      &:before {
+        @extend .svg-assets--sprites--dislike-white;
+        @extend .svg-assets--sprites--dislike-white-dims;
+        @include custom-img(0.8, 4px 9px 0 0);
+        content: '';
+        display: block;
+      }
+    }
+    &__number {
+      padding-right: 6px;
+    }
+  }
+  &__redirect {
+    background-color: $primary;
+    color: map_get($colors, white);
+    padding: 0.5rem 2rem;
+    border-radius: 30px;
+    box-sizing: unset;
+  }
+}

@@ -1,0 +1,19 @@
+.background {
+  &.is-white {
+    background-color: map_get($colors, white);
+  }
+
+  &.is-black {
+    background-color: map_get($colors, black);
+  }
+
+  &.is-primary {
+    background-color: $primary;
+  }
+  &.is-secondary {
+    background-color: map_get($colors, secondary);
+  }
+  &.is-tertiary {
+    background-color: map_get($colors, tertiary);
+  }
+}

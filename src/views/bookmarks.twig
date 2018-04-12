@@ -1,0 +1,45 @@
+{% extends './_layout.twig' %}
+
+{% set title = 'Bookmarks' %}
+
+{% block content %}
+    <main>
+        {# SECTION WORD OF THE DAY #}
+        <section class="section pd-t1">
+            <div class="container">
+                <div class="columns pd-t2 title__underlined">
+                    <div class="column pd0">
+                        <div class="level">
+                            <h1 class="text ft-1 is-tertiary title is-size-5-desktop is-size-4-tablet is-size-5-mobile has-text-left">
+                                Bookmarks
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="columns">
+                    <div class="column pd0">
+                        <ul class="text ft-2 pd-t2">
+                            {% for i in 0..4 %}
+                                <li class="pd-b1">
+                                    <div class="level is-mobile">
+                                        <a href="/definition" class="level-left">
+                                            <span class="text is-secondary">Itération</span>
+                                        </a>
+                                        <div class="level-right">
+                                            <a href="/write" class="icon-small icon-small__primary icon-pen mg-r1">
+                                                <span class="dblock"></span>
+                                            </a>
+                                            <div class="icon-small icon-small__primary icon-bookmark icon-bookmark__active">
+                                                <span class="dblock"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock %}

@@ -1,0 +1,90 @@
+.dflex {
+  display: flex;
+}
+
+.dblock {
+  display: block;
+}
+
+.bbox {
+  box-sizing: border-box;
+}
+
+.p-rel {
+  position: relative;
+}
+
+.over-hide {
+  overflow: hidden;
+}
+
+.full-w {
+  width: 100%;
+}
+
+.full-h {
+  height: 100%;
+}
+
+/*////////FONTS////////*/
+.fw-i {
+  font-weight: initial;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.italic {
+  font-style: italic;
+}
+
+/*////////MARGIN - PADDING////////*/
+.mauto {
+  margin: auto;
+}
+
+.mauto-w {
+  margin: 0 auto;
+}
+
+.mauto-h {
+  margin: auto 0;
+}
+
+@for $i from 0 through 10 {
+  .mg#{$i} {
+    margin: 10px*$i;
+  }
+  .pd#{$i} {
+    padding: 10px*$i;
+  }
+
+  /*////////MARGIN////////*/
+  .mg-b#{$i} {
+    margin-bottom: 10px*$i;
+  }
+  .mg-t#{$i} {
+    margin-top: 10px*$i;
+  }
+  .mg-l#{$i} {
+    margin-left: 10px*$i;
+  }
+  .mg-r#{$i} {
+    margin-right: 10px*$i;
+  }
+
+  /*////////PADDING////////*/
+  .pd-b#{$i} {
+    padding-bottom: 10px*$i;
+  }
+  .pd-t#{$i} {
+    padding-top: 10px*$i;
+  }
+  .pd-l#{$i} {
+    padding-left: 10px*$i;
+  }
+  .pd-r#{$i} {
+    padding-right: 10px*$i;
+  }
+}

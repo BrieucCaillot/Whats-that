@@ -1,0 +1,15 @@
+header {
+  .navbar {
+    padding: 12px 0;
+    img {
+      width: 150px;
+    }
+  }
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  padding: 20px 0;
+  z-index: 2;
+}
