@@ -4,6 +4,7 @@
 .idea
 .sass-cache/
 *.css.map
+docs/
 
 # NPM related
 node_modules/

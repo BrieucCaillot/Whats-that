@@ -2,6 +2,9 @@ const express = require('express');
 const twig = require('twig');
 const bodyParser = require('body-parser');
 const stringify = require('json-stringify')
+const moment = require('moment');
+const bcrypt = require('bcrypt');
+const mysql = require('mysql');
 const fs = require('fs');
 const yaml = require('js-yaml');
 
@@ -73,19 +76,19 @@ app.use(assets('public', 'fonts'),
 
 
 // connection database (if settings.mysql.cnct is true connection ok => .config.yml)
-// if (settings.mysql.cnct == true) {
-//     var db = mysql.createConnection({
-//         host: settings.mysql.host,
-//         user: settings.mysql.user,
-//         password: settings.mysql.pssw,
-//         database: settings.mysql.dbts
-//     })
-// }
-// try connection
-// db.connect((err) => {
-//     if (err) throw err;
-// console.log('Connexion succeed');
-// });
+if (settings.mysql.cnct == true) {
+    var db = mysql.createConnection({
+        host: settings.mysql.host,
+        user: settings.mysql.user,
+        password: settings.mysql.pssw,
+        database: settings.mysql.dbts
+    })
+}
+
+db.connect((err) => {
+    if (err) throw err;
+    wr('Connexion reussie');
+});
 
 // Routes
 app.get('/', (req, res) => {
@@ -98,7 +101,7 @@ app.get('/definition', (req, res) => {
 
 app.get('/write', (req, res) => {
     res.render(views('write'))
-})&
+}) &
 
 app.get('/results', (req, res) => {
     res.render(views('results'))
@@ -119,6 +122,21 @@ app.get('/signin', (req, res) => {
 app.get('/signup', (req, res) => {
     res.render(views('signup'))
 })
+
+app.post('/signup', (req, res) => {
+    if (req.body.password === req.body.repassword) {
+        var hash = bcrypt.hashSync(req.body.password, 10);
+        var myDate = moment(new Date()).format("YYYY-MM-DD HH:mm:ss");
+        let sql = 'INSERT INTO user(`lastname`, `firstname`, `email`, `gender`, `password`, `created`, `modified`) VALUES("' + req.body.lastname + '", "' + req.body.firstname + '", "' + req.body.email + '", "' + req.body.gender + '", "' + hash + '", "' + myDate + '", "' + myDate + '")';
+        db.query(sql, (err, result) => {
+            if (err) throw err;
+            wr('Insertion reussie : ' + result);
+            res.send('You are now signed up');
+        })
+    } else {
+        res.send('Use the same password please')
+    }
+});
 
 app.get('/modify', (req, res) => {
     res.render(views('modify'))

@@ -7,10 +7,10 @@ module.exports = function (grunt) {
         browserify: {
             dist: {
                 files: {
-                    'src/views/assets/js/script.min.js': ['src/views/assets/js/minified/**.min.js']
+                    'src/views/assets/js/script.min.js': ['src/views/assets/js/**.min.js']
                 },
                 options: {
-                    transform: [['babelify']],
+                    transform: ['babelify'],
                     browserifyOptions: {
                         debug: true
                     }
@@ -25,19 +25,19 @@ module.exports = function (grunt) {
                         expand: false,
                         //cwd: 'src/views/assets/js/components',
                         src: ['src/views/assets/js/components/*.js'],
-                        dest: 'src/views/assets/js/minified/components.min.js'
+                        dest: 'src/views/assets/js/components.min.js'
                     },
                     {
                         expand: false,
                         //cwd: 'src/views/assets/js/templates',
                         src: ['src/views/assets/js/templates/*.js'],
-                        dest: 'src/views/assets/js/minified/templates.min.js'
+                        dest: 'src/views/assets/js/templates.min.js'
                     },
                     {
                         expand: false,
                         //cwd: 'src/views/assets/js/vendors',
                         src: ['src/views/assets/js/vendors/*.js'],
-                        dest: 'src/views/assets/js/minified/vendors.min.js'
+                        dest: 'src/views/assets/js/vendors.min.js'
                     }
                 ]
             }

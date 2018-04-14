@@ -7,7 +7,7 @@ mysql:
     port: 3306
     user: root
     pssw: ''
-    dbts: test
+    dbts: whatsthat
 port:
     local   : 1337
     public  : 8080

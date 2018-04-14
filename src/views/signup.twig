@@ -26,7 +26,7 @@
                         </div>
                     </div>
                 </div>
-                <form action="/signup">
+                <form action="/signup" method="POST">
                     <div class="columns">
                         <div class="column">
                             <div class="level is-mobile">
@@ -34,7 +34,7 @@
                                     <span class="input-custom input-custom__form input--hoshi over-hide">
                                         <input id="input-search-lastname"
                                                class="input__field input__field--hoshi text is-secondary is-size-6"
-                                               type="text"/>
+                                               type="text" name="lastname"/>
                                         <label for="input-search-lastname"
                                                class="input__label input__label--hoshi input__label--hoshi-color-1">
                                             <span class="input__label-content input__label-content--hoshi text ft-1 is-secondary">Nom</span>
@@ -45,7 +45,7 @@
                                     <span class="input-custom input-custom__form input--hoshi over-hide">
                                         <input id="input-search-firstname"
                                                class="input__field input__field--hoshi text is-secondary is-size-6"
-                                               type="text"/>
+                                               type="text" name="firstname"/>
                                         <label for="input-search-firstname"
                                                class="input__label input__label--hoshi input__label--hoshi-color-1">
                                             <span class="input__label-content input__label-content--hoshi text ft-1 is-secondary">Prénom</span>
@@ -62,7 +62,7 @@
                                     <span class="input-custom input-custom__form input--hoshi over-hide">
                                         <input id="input-search-email"
                                                class="input__field input__field--hoshi text is-secondary is-size-6"
-                                               type="email"/>
+                                               type="email" name="email"/>
                                         <label for="input-search-email"
                                                class="input__label input__label--hoshi input__label--hoshi-color-1">
                                             <span class="input__label-content input__label-content--hoshi text ft-1 is-secondary">Email</span>
@@ -76,11 +76,11 @@
                         <div class="column">
                             <div class="control">
                                 <label class="radio text ft-1 is-secondary">
-                                    <input type="radio" name="answer">
+                                    <input type="radio" name="gender" value="M">
                                     Homme
                                 </label>
                                 <label class="radio text ft-1 is-secondary">
-                                    <input type="radio" name="answer">
+                                    <input type="radio" name="gender" value="F">
                                     Femme
                                 </label>
                             </div>
@@ -93,7 +93,7 @@
                                     <span class="input-custom input-custom__form input--hoshi over-hide">
                                         <input id="input-search-password"
                                                class="input__field input__field--hoshi text is-secondary is-size-6"
-                                               type="password"/>
+                                               type="password" name="password"/>
                                         <label for="input-search-password"
                                                class="input__label input__label--hoshi input__label--hoshi-color-1">
                                             <span class="input__label-content input__label-content--hoshi text ft-1 is-secondary">Mot de passe</span>
@@ -110,7 +110,7 @@
                                     <span class="input-custom input-custom__form input--hoshi over-hide">
                                         <input id="input-search-repassword"
                                                class="input__field input__field--hoshi text is-secondary is-size-6"
-                                               type="password"/>
+                                               type="password" name="repassword"/>
                                         <label for="input-search-repassword"
                                                class="input__label input__label--hoshi input__label--hoshi-color-1">
                                             <span class="input__label-content input__label-content--hoshi text ft-1 is-secondary">Confirmer mot de passe</span>

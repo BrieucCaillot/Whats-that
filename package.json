@@ -10,11 +10,14 @@
   "author": "Brieuc Caillot <brieuc>",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^2.0.0",
     "body-parser": "^1.18.2",
     "express": "^4.16.3",
     "fs": "0.0.1-security",
     "js-yaml": "^3.11.0",
     "json-stringify": "^1.0.0",
+    "moment": "^2.22.0",
+    "mysql": "^2.15.0",
     "npm": "^5.8.0",
     "twig": "^1.10.5"
   },
