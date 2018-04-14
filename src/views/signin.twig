@@ -26,14 +26,20 @@
                         </div>
                     </div>
                 </div>
-                <form action="/signup">
+                {% if checkPassword == false %}
+                    <h2>Vous n'êtes pas inscrit, ou l'email renseignée n'est pas bonne</h2>
+                {% endif %}
+                {% if results.length < 0 %}
+                    <h2>Vous devez vous inscrire</h2>
+                {% endif %}
+                <form action="/signin" method="POST">
                     <div class="columns">
                         <div class="column">
                             <div class="level is-mobile">
                                 <div class="level-item p-rel">
                                     <span class="input-custom input-custom__form input--hoshi over-hide">
                                         <input id="input-search-email" class="input__field input__field--hoshi text is-secondary is-size-6"
-                                                type="email"/>
+                                               type="email" name="email"/>
                                         <label for="input-search-email"
                                                class="input__label input__label--hoshi input__label--hoshi-color-1">
                                             <span class="input__label-content input__label-content--hoshi text ft-1 is-secondary">Email</span>
@@ -49,7 +55,7 @@
                                 <div class="level-item p-rel">
                                     <span class="input-custom input-custom__form input--hoshi over-hide">
                                         <input id="input-search-password" class="input__field input__field--hoshi text is-secondary is-size-6"
-                                                type="password"/>
+                                               type="password" name="password"/>
                                         <label for="input-search-password"
                                                class="input__label input__label--hoshi input__label--hoshi-color-1">
                                             <span class="input__label-content input__label-content--hoshi text ft-1 is-secondary">Mot de passe</span>

@@ -1,4 +1,5 @@
 const express = require('express');
+const session = require('express-session');
 const twig = require('twig');
 const bodyParser = require('body-parser');
 const stringify = require('json-stringify')
@@ -27,6 +28,14 @@ app.set('view engine', 'twig');
 app.use(bodyParser.urlencoded({
     extented: false
 }));
+
+// expression session
+app.use(session({
+    secret: '!"dzjdjzijzjdjéé"&',
+    resave: false,
+    saveUninitialized: true,
+    // cookie: { secure: true }
+}))
 
 // console.log
 var wr = function (str) {
@@ -87,11 +96,16 @@ if (settings.mysql.cnct == true) {
 
 db.connect((err) => {
     if (err) throw err;
-    wr('Connexion reussie');
+    wr('Connected to database');
 });
 
 // Routes
 app.get('/', (req, res) => {
+    wr(req.session.token)
+    if (req.session.token != undefined) {
+        let sessData = req.session
+        sessData.token = undefined;
+    }
     res.render(views('index'))
 })
 
@@ -117,6 +131,34 @@ app.get('/welcome', (req, res) => {
 
 app.get('/signin', (req, res) => {
     res.render(views('signin'))
+})
+
+app.post('/signin', (req, res) => {
+    let sql = 'SELECT * FROM user WHERE EMAIL LIKE "' + req.body.email + '";'
+    db.query(sql, (err, results) => {
+        if (err) throw err;
+
+        if (results.length > 0) {
+            bcrypt.compare(req.body.password, results[0].password).then((password) => {
+                if (password === true) {
+                    var sessData = req.session;
+                    sessData.token = results[0].id;
+                    res.redirect('/');
+                    wr('Connexion worked out - Good password')
+                } else {
+                    res.render(views('signin', {
+                        checkPassword: password
+                    }))
+                    wr('Connexion didn\'t worked out - Wrong password')
+                }
+            })
+        } else {
+            res.render(views('signin', {
+                results: results[0]
+            }))
+            wr('Vous n\'êtes pas inscrit, ou l\'email renseignée n\'est pas bonne');
+        }
+    });
 })
 
 app.get('/signup', (req, res) => {

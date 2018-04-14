@@ -7,6 +7,13 @@
         {# SECTION RESEARCH #}
         <section id="search-section" class="section">
             <div class="container">
+                {% if firstname.length > 0 %}
+                    <div class="columns">
+                        <div class="column">
+                            <h2>Vous êtes maintenant connecté</h2>
+                        </div>
+                    </div>
+                {% endif %}
                 <div class="columns background bdr is-tertiary">
                     <div class="column">
                         <div class="level">
