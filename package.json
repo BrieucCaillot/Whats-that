@@ -7,7 +7,7 @@
     "development": "grunt && node --inspect --max_old_space_size=4096 ./app.js",
     "start": "grunt && pm2 start ./app.js --watch --name=whats-that"
   },
-  "author": "Brieuc Caillot <brieuc>",
+  "author": "Brieuc Caillot <brieucmailpro@gmail.com>",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^2.0.0",
@@ -29,6 +29,7 @@
     "grunt-browserify": "^5.2.0",
     "grunt-contrib-uglify": "^3.3.0",
     "grunt-contrib-uglify-es": "github:gruntjs/grunt-contrib-uglify#harmony",
+    "grunt-contrib-watch": "^1.0.0",
     "grunt-svg-sprite": "^1.4.0"
   }
 }

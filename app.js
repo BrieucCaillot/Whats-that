@@ -106,6 +106,7 @@ var sessionData;
 // Routes
 app.get('/', (req, res) => {
     res.render(views('index'))
+    wr('Homepage')
 })
 
 app.get('/definition', (req, res) => {
@@ -113,25 +114,22 @@ app.get('/definition', (req, res) => {
 })
 
 app.get('/write', (req, res) => {
-    res.render(views('write'))
-    wr(req.session.token)
+    if (sessionData != undefined) {
+        res.render(views('write'))
+    } else {
+        res.redirect('/welcome')
+    }
+    wr(sessionData)
 })
 
 app.post('/write', (req, res) => {
-    wr(sessionData.token)
-    if (req.session.token != undefined) {
-        var user_id = req.session.token[0]
-        let sql = "SELECT * FROM `user` WHERE id = " + user_id;
+    wr(sessionData)
+    if (sessionData.token != undefined) {
+        let sql = "SELECT * FROM `user` WHERE id = " + sessionData.token;
         wr(sql)
         db.query(sql, (err, results, fields) => {
-            if (err) throw err
-            wr(results)
-            wr(results[0])
-
-            let sql = "INSERT INTO word (`user_id`, `name`, `definition`, `created`, `modified`) VALUES (" + user_id + ", '" + req.body.search + "', '" + req.body.definition + "', '" + myDate + "', '" + myDate + "')";
-            wr(sql)
-            wr(req.session)
-            wr(req.session.token)
+            if (err) throw err;
+            let sql = "INSERT INTO word (`user_id`, `name`, `definition`, `created`, `modified`) VALUES (" + sessionData.token + ", '" + req.body.searchHidden + "', '" + req.body.definition + "', '" + myDate + "', '" + myDate + "')";
             db.query(sql, (err, results, fields) => {
                 if (err) throw err;
                 wr('Nouvelle définition créee');

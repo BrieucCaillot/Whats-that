@@ -50,43 +50,45 @@
                         </div>
                     </div>
                 </div>
-                <div class="columns title__word-title is-vcentered pd-t2">
-                    <div class="column pd0">
-                        <div class="level is-mobile">
-                            <div class="level-left">
-                                <h3 class="title">
-                                    <span class="text ft-3 is-size-1 is-primary">I</span>
-                                    <span class="text ft-2 is-secondary">tération</span>
-                                </h3>
+                <form action="/write" method="POST">
+                    <div class="columns title__word-title is-vcentered pd-t2">
+                        <div class="column pd0">
+                            <div class="level is-mobile">
+                                <div class="level-left">
+                                    <h3 class="title">
+                                        <span class="wordSearchFirst is-uppercase text ft-3 is-size-1 is-primary">U</span>
+                                        <span class="wordSearchRest text ft-2 is-secondary">n mot</span>
+                                        <input class="is-hidden searchHidden" type="text" name="searchHidden">
+                                    </h3>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="columns pd-t3">
-                    <div class="column pd0">
-                        <div class="level">
-                            <textarea class="textarea" name="definition" id="" cols="30" rows="5"></textarea>
+                    <div class="columns pd-t3">
+                        <div class="column pd0">
+                            <div class="level">
+                                <textarea class="textarea" name="definition" id="" cols="30" rows="5"></textarea>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="columns pd-t2">
-                    <div class="column">
-                        <div class="level  is-mobile">
-                            <a class="mauto-w" href="/signup">
-                                <button class="button button__redirect text ft-2" type="submit">Créer définition
+                    <div class="columns pd-t2">
+                        <div class="column">
+                            <div class="level  is-mobile">
+                                <button class="button button__redirect mauto-w text ft-2" type="submit">
+                                    Créer définition
                                 </button>
-                            </a>
-                        </div>
-                        <div class="level">
-                            <div class="level-item">
-                                <p class="text ft-1 is-size-7 has-text-centered">
-                                    Si vous ne souhaitez pas créer de nouvelle définition,
-                                    vous pouvez revenir à <a href="/" class="text is-primary">l’accueil</a>
-                                </p>
+                            </div>
+                            <div class="level">
+                                <div class="level-item">
+                                    <p class="text ft-1 is-size-7 has-text-centered">
+                                        Si vous ne souhaitez pas créer de nouvelle définition,
+                                        vous pouvez revenir à <a href="/" class="text is-primary">l’accueil</a>
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
         </section>
     </main>
