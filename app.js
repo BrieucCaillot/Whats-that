@@ -9,6 +9,8 @@ const mysql = require('mysql');
 const fs = require('fs');
 const yaml = require('js-yaml');
 
+let myDate = moment(new Date()).format("YYYY-MM-DD HH:mm:ss");
+
 // defined express
 const app = express();
 
@@ -32,13 +34,13 @@ app.use(bodyParser.urlencoded({
 // expression session
 app.use(session({
     secret: '!"dzjdjzijzjdjéé"&',
-    resave: false,
+    resave: true,
     saveUninitialized: true,
     // cookie: { secure: true }
 }))
 
 // console.log
-var wr = function (str) {
+var wr = (str) => {
     console.log('[-] ' + str)
     return;
 }
@@ -99,13 +101,10 @@ db.connect((err) => {
     wr('Connected to database');
 });
 
+var sessionData;
+
 // Routes
 app.get('/', (req, res) => {
-    wr(req.session.token)
-    if (req.session.token != undefined) {
-        let sessData = req.session
-        sessData.token = undefined;
-    }
     res.render(views('index'))
 })
 
@@ -115,7 +114,36 @@ app.get('/definition', (req, res) => {
 
 app.get('/write', (req, res) => {
     res.render(views('write'))
-}) &
+    wr(req.session.token)
+})
+
+app.post('/write', (req, res) => {
+    wr(sessionData.token)
+    if (req.session.token != undefined) {
+        var user_id = req.session.token[0]
+        let sql = "SELECT * FROM `user` WHERE id = " + user_id;
+        wr(sql)
+        db.query(sql, (err, results, fields) => {
+            if (err) throw err
+            wr(results)
+            wr(results[0])
+
+            let sql = "INSERT INTO word (`user_id`, `name`, `definition`, `created`, `modified`) VALUES (" + user_id + ", '" + req.body.search + "', '" + req.body.definition + "', '" + myDate + "', '" + myDate + "')";
+            wr(sql)
+            wr(req.session)
+            wr(req.session.token)
+            db.query(sql, (err, results, fields) => {
+                if (err) throw err;
+                wr('Nouvelle définition créee');
+                wr(results);
+                res.send('Nouvelle définition créee');
+            })
+        })
+    } else {
+        res.redirect('/')
+    }
+
+})
 
 app.get('/results', (req, res) => {
     res.render(views('results'))
@@ -125,24 +153,36 @@ app.get('/bookmarks', (req, res) => {
     res.render(views('bookmarks'))
 })
 
-app.get('/welcome', (req, res) => {
-    res.render(views('welcome'))
+app.get('/welcome', (req, res) => {!
+    wr('Welcome page')
+    if (sessionData != undefined) {
+        res.redirect('/modify')
+    } else {
+        res.render(views('welcome'))
+    }
 })
 
 app.get('/signin', (req, res) => {
-    res.render(views('signin'))
+    if (sessionData != undefined) {
+        res.redirect('/modify')
+        wr(sessionData)
+    } else {
+        wr(sessionData)
+        res.render(views('signin'))
+    }
 })
 
 app.post('/signin', (req, res) => {
-    let sql = 'SELECT * FROM user WHERE EMAIL LIKE "' + req.body.email + '";'
+    let sql = 'SELECT * FROM user WHERE email LIKE "' + req.body.email + '";'
     db.query(sql, (err, results) => {
         if (err) throw err;
 
         if (results.length > 0) {
             bcrypt.compare(req.body.password, results[0].password).then((password) => {
                 if (password === true) {
-                    var sessData = req.session;
-                    sessData.token = results[0].id;
+                    sessionData = req.session;
+                    sessionData.token = results[0].id;
+                    wr(sessionData.token)
                     res.redirect('/');
                     wr('Connexion worked out - Good password')
                 } else {
@@ -153,22 +193,25 @@ app.post('/signin', (req, res) => {
                 }
             })
         } else {
-            res.render(views('signin', {
-                results: results[0]
-            }))
+            res.render(views('signin'));
             wr('Vous n\'êtes pas inscrit, ou l\'email renseignée n\'est pas bonne');
         }
     });
 })
 
 app.get('/signup', (req, res) => {
-    res.render(views('signup'))
+    if (sessionData != undefined) {
+        res.redirect('/modify')
+        wr(sessionData)
+    } else {
+        wr(sessionData)
+        res.render(views('signup'))
+    }
 })
 
 app.post('/signup', (req, res) => {
     if (req.body.password === req.body.repassword) {
         var hash = bcrypt.hashSync(req.body.password, 10);
-        var myDate = moment(new Date()).format("YYYY-MM-DD HH:mm:ss");
         let sql = 'INSERT INTO user(`lastname`, `firstname`, `email`, `gender`, `password`, `created`, `modified`) VALUES("' + req.body.lastname + '", "' + req.body.firstname + '", "' + req.body.email + '", "' + req.body.gender + '", "' + hash + '", "' + myDate + '", "' + myDate + '")';
         db.query(sql, (err, result) => {
             if (err) throw err;
@@ -181,7 +224,25 @@ app.post('/signup', (req, res) => {
 });
 
 app.get('/modify', (req, res) => {
-    res.render(views('modify'))
+    if (sessionData != undefined) {
+        res.render(views('modify'))
+        wr(sessionData)
+    } else {
+        res.redirect('/welcome')
+    }
+    wr('Modify page')
+})
+
+app.get('/disconnect', (req, res) => {
+    if (sessionData != undefined) {
+        wr(sessionData)
+        sessionData = undefined
+        res.redirect('/')
+    } else {
+        wr(sessionData)
+        res.redirect('/welcome')
+    }
+    wr('Disconnected')
 })
 
 app.listen(settings.port.local, () => {

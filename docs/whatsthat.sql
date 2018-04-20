@@ -17,7 +17,7 @@ CREATE TABLE `user` (
 CREATE TABLE `word` (
 	`id` int NOT NULL AUTO_INCREMENT,
 	`user_id` int NOT NULL,
-	`name` varchar(128) NOT NULL UNIQUE,
+	`name` varchar(128) NOT NULL,
 	`definition` varchar(500) NOT NULL,
 	`created` DATETIME NOT NULL,
 	`modified` DATETIME NOT NULL,

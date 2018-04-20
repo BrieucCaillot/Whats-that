@@ -28,6 +28,7 @@
     "grunt": "^1.0.2",
     "grunt-browserify": "^5.2.0",
     "grunt-contrib-uglify": "^3.3.0",
+    "grunt-contrib-uglify-es": "github:gruntjs/grunt-contrib-uglify#harmony",
     "grunt-svg-sprite": "^1.4.0"
   }
 }

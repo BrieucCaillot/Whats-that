@@ -12,7 +12,8 @@ module.exports = function (grunt) {
                 options: {
                     transform: ['babelify'],
                     browserifyOptions: {
-                        debug: true
+                        debug: true,
+
                     }
                 }
             }
@@ -77,7 +78,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-browserify');
 
     // Load the plugin that provides the "uglify" task.
-    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-uglify-es');
 
     // Load the plugin "grunt svg"
     grunt.loadNpmTasks('grunt-svg-sprite');
