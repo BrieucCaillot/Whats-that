@@ -27,9 +27,8 @@ try {
 app.set('view engine', 'twig');
 
 // bodyParser => form (input)
-app.use(bodyParser.urlencoded({
-    extented: false
-}));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 // expression session
 app.use(session({
@@ -105,8 +104,15 @@ var sessionData;
 
 // Routes
 app.get('/', (req, res) => {
-    res.render(views('index'))
     wr('Homepage')
+    let sql = "SELECT `name`, `definition` FROM word";
+    db.query(sql, (err, results, fields) => {
+        let names = JSON.stringify(results);
+        wr(names)
+	    res.render(views('index', {
+            names: names,
+        }));
+    });
 })
 
 app.get('/definition', (req, res) => {
@@ -119,7 +125,6 @@ app.get('/write', (req, res) => {
     } else {
         res.redirect('/welcome')
     }
-    wr(sessionData)
 })
 
 app.post('/write', (req, res) => {
@@ -129,8 +134,14 @@ app.post('/write', (req, res) => {
         wr(sql)
         db.query(sql, (err, results, fields) => {
             if (err) throw err;
-            let sql = "INSERT INTO word (`user_id`, `name`, `definition`, `created`, `modified`) VALUES (" + sessionData.token + ", '" + req.body.searchHidden + "', '" + req.body.definition + "', '" + myDate + "', '" + myDate + "')";
+
+	        var definition = req.body.definition;
+	        var definitionstr = definition.replace(/'/g, '\\\'');
+
+
+            let sql = "INSERT INTO word (`user_id`, `name`, `definition`, `created`, `modified`) VALUES (" + sessionData.token + ", '" + req.body.searchHidden + "', '" + definitionstr + "', '" + myDate + "', '" + myDate + "')";
             db.query(sql, (err, results, fields) => {
+	            wr(definitionstr)
                 if (err) throw err;
                 wr('Nouvelle définition créee');
                 wr(results);
@@ -148,7 +159,11 @@ app.get('/results', (req, res) => {
 })
 
 app.get('/bookmarks', (req, res) => {
-    res.render(views('bookmarks'))
+	if (sessionData != undefined) {
+		res.render(views('/bookmarks'))
+	} else {
+		res.redirect('/welcome')
+	}
 })
 
 app.get('/welcome', (req, res) => {!

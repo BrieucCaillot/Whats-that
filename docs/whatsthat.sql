@@ -2,7 +2,7 @@ DROP DATABASE IF EXISTS whatsthat;
 CREATE DATABASE whatsthat;
 USE whatsthat;
 
-CREATE TABLE `user` (
+  CREATE TABLE `user` (
 	`id` int NOT NULL AUTO_INCREMENT,
 	`firstname` varchar(128) NOT NULL,
 	`lastname` varchar(128) NOT NULL,
