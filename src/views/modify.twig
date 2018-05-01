@@ -1,6 +1,6 @@
 {% extends './_layout.twig' %}
 
-{% set title = 'Inscription' %}
+{% set title = 'Modifier le profil' %}
 
 {% block content %}
     <main>
@@ -26,7 +26,7 @@
                         </div>
                     </div>
                 </div>
-                <form action="/signup">
+                <form action="/signup" method="POST">
                     <div class="columns">
                         <div class="column">
                             <div class="level is-mobile">
@@ -34,7 +34,7 @@
                                     <span class="input-custom input-custom__form input--hoshi over-hide">
                                         <input id="input-search-lastname"
                                                class="input__field input__field--hoshi text is-secondary is-size-6"
-                                               type="text"/>
+                                               type="text" value="{{ user.lastname }}"/>
                                         <label for="input-search-lastname"
                                                class="input__label input__label--hoshi input__label--hoshi-color-1">
                                             <span class="input__label-content input__label-content--hoshi text ft-1 is-secondary">Nom</span>
@@ -45,7 +45,7 @@
                                     <span class="input-custom input-custom__form input--hoshi over-hide">
                                         <input id="input-search-firstname"
                                                class="input__field input__field--hoshi text is-secondary is-size-6"
-                                               type="text"/>
+                                               type="text" value="{{ user.firstname }}"/>
                                         <label for="input-search-firstname"
                                                class="input__label input__label--hoshi input__label--hoshi-color-1">
                                             <span class="input__label-content input__label-content--hoshi text ft-1 is-secondary">Prénom</span>
@@ -62,7 +62,7 @@
                                     <span class="input-custom input-custom__form input--hoshi over-hide">
                                         <input id="input-search-email"
                                                class="input__field input__field--hoshi text is-secondary is-size-6"
-                                               type="email"/>
+                                               type="email" value="{{ user.email }}"/>
                                         <label for="input-search-email"
                                                class="input__label input__label--hoshi input__label--hoshi-color-1">
                                             <span class="input__label-content input__label-content--hoshi text ft-1 is-secondary">Email</span>

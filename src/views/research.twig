@@ -1,6 +1,6 @@
 {% extends './_layout.twig' %}
 
-{% set title = 'Write' %}
+{% set title = 'Research' %}
 
 {% block content %}
     <main>
@@ -16,13 +16,13 @@
                                 </h1>
                             </div>
                         </div>
-                        <form>
+                        <form action="/research">
                             <div class="level">
                                 <div class="level-item p-rel">
                                     <span class="input-custom input-custom__search input--hoshi over-hide">
                                         <input id="input-search"
                                                class="input__field input__field--hoshi text is-white is-size-6"
-                                               type="text" name="search" required value="{{ word.name }}"/>
+                                               type="text" name="word" required value="{{ word.name }}"/>
                                         <label for="input-search"
                                                class="input__label input__label--hoshi input__label--hoshi-color-1">
                                             <span class="input__label-content input__label-content--hoshi text ft-1 is-white">Rechercher</span>
@@ -38,57 +38,42 @@
                 </div>
             </div>
         </section>
-        {# SECTION DEFINITION OF THE DAY #}
+        {# SECTION SEARCH RESULTS#}
         <section class="section pd-t1">
             <div class="container">
                 <div class="columns title__underlined">
                     <div class="column pd0">
                         <div class="level">
                             <h2 class="text ft-1 is-tertiary title is-size-5-desktop is-size-4-tablet is-size-5-mobile has-text-left">
-                                Donner une définition
+                                Résultats de recherche
                             </h2>
                         </div>
                     </div>
                 </div>
-                <form action="/write" method="POST">
-                    <div class="columns title__word-title is-vcentered pd-t2">
-                        <div class="column pd0">
-                            <div class="level is-mobile">
-                                <div class="level-left">
-                                    <h3 class="title">
-                                        <span class="wordSearchFirst is-uppercase text ft-3 is-size-1 is-primary">U</span>
-                                        <span class="wordSearchRest text ft-2 is-secondary">n mot</span>
-                                        <input class="is-hidden searchHidden" type="text" name="searchHidden" value="{{ word.name }}">
-                                    </h3>
+                {% if name is defined %}
+                <div class="columns">
+                    <div class="column pd0">
+                        <ul class="text ft-2 pd-t2">
+                            <li class="pd-b1">
+                                <div class="level is-mobile">
+                                    <a href="/definition?word={{ name.name }}" class="level-left">
+                                        <span class="text is-secondary is-capitalized">{{ name.name }}</span>
+                                    </a>
+                                    <div class="level-right">
+                                        <a href="/write?word={{ name.name }}"
+                                           class="icon-small icon-small__primary icon-pen mg-r1">
+                                            <span class="dblock"></span>
+                                        </a>
+                                        <div class="icon-small icon-small__primary icon-bookmark">
+                                            <span class="dblock"></span>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
+                            </li>
+                        </ul>
                     </div>
-                    <div class="columns pd-t3">
-                        <div class="column pd0">
-                            <div class="level">
-                                <textarea class="textarea" name="definition" required cols="30" rows="5"></textarea>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="columns pd-t2">
-                        <div class="column">
-                            <div class="level  is-mobile">
-                                <button class="button button__redirect mauto-w text ft-2" type="submit">
-                                    Créer définition
-                                </button>
-                            </div>
-                            <div class="level">
-                                <div class="level-item">
-                                    <p class="text ft-1 is-size-7 has-text-centered">
-                                        Si vous ne souhaitez pas créer de nouvelle définition,
-                                        vous pouvez revenir à <a href="/" class="text is-primary">l’accueil</a>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
+                </div>
+                {% endif %}
             </div>
         </section>
     </main>

@@ -5,40 +5,41 @@
 {% block content %}
     <main>
         {# SECTION RESEARCH #}
-        <section id="search-section" class="section">
-            <div class="container">
-                <div class="columns background bdr is-tertiary">
-                    <div class="column">
-                        <div class="level">
-                            <div class="level-item">
-                                <h1 class="text ft-1 is-white title is-size-5-desktop is-size-4-tablet is-size-5-mobile">
-                                    Rechercher une définition
-                                </h1>
-                            </div>
-                        </div>
-                        <form action="/">
-                            <div class="level">
-                                <div class="level-item p-rel">
-                                    <span class="input-custom input-custom__search input--hoshi over-hide">
-                                        <input id="input-search"
-                                               class="input__field input__field--hoshi text is-white is-size-6"
-                                               type="text"/>
-                                        <label for="input-search"
-                                               class="input__label input__label--hoshi input__label--hoshi-color-1">
-                                            <span class="input__label-content input__label-content--hoshi text ft-1 is-white">Rechercher</span>
-                                        </label>
-                                    </span>
-                                    <button type="submit" class="icon-small icon-small__white icon-search">
-                                        <span class="dblock"></span>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
+        {#<section id="search-section" class="section">#}
+            {#<div class="container">#}
+                {#<div class="columns background bdr is-tertiary">#}
+                    {#<div class="column">#}
+                        {#<div class="level">#}
+                            {#<div class="level-item">#}
+                                {#<h1 class="text ft-1 is-white title is-size-5-desktop is-size-4-tablet is-size-5-mobile">#}
+                                    {#Rechercher une définition#}
+                                {#</h1>#}
+                            {#</div>#}
+                        {#</div>#}
+                        {#<form action="/">#}
+                            {#<div class="level">#}
+                                {#<div class="level-item p-rel">#}
+                                    {#<span class="input-custom input-custom__search input--hoshi over-hide">#}
+                                        {#<input id="input-search"#}
+                                               {#class="input__field input__field--hoshi text is-white is-size-6"#}
+                                               {#type="text"/>#}
+                                        {#<label for="input-search"#}
+                                               {#class="input__label input__label--hoshi input__label--hoshi-color-1">#}
+                                            {#<span class="input__label-content input__label-content--hoshi text ft-1 is-white">Rechercher</span>#}
+                                        {#</label>#}
+                                    {#</span>#}
+                                    {#<button type="submit" class="icon-small icon-small__white icon-search">#}
+                                        {#<span class="dblock"></span>#}
+                                    {#</button>#}
+                                {#</div>#}
+                            {#</div>#}
+                        {#</form>#}
+                    {#</div>#}
+                {#</div>#}
+            {#</div>#}
+        {#</section>#}
         {# SECTION DEFINITION OF THE DAY #}
+        {% if recentword is defined %}
         <section class="section pd-t1">
             <div class="container">
                 <div class="columns title__underlined">
@@ -53,54 +54,54 @@
                 <div class="columns title__word-title is-vcentered pd-t2">
                     <div class="column pd0">
                         <div class="level is-mobile">
-                            <a href="/definition" class="level-left">
-                                <h3 class="title">
-                                    <span class="text ft-3 is-size-1 is-primary">I</span>
-                                    <span class="text ft-2 is-secondary">tération</span>
-                                </h3>
-                            </a>
-                            <div class="level-right">
-                                <a href="/write" class="icon-small icon-small__primary icon-pen mg-r1">
-                                    <span class="dblock"></span>
+                            <div class="level-left">
+                                <a href="/definition?word={{ recentword.name }}">
+                                    <h3 class="title">
+                                        <p class="word-definiton is-hidden">{{ recentword.name }}</p>
+                                        <span id="wordFirst" class="text ft-3 is-size-1 is-primary is-uppercase"></span>
+                                        <span id="wordSecond" class="text ft-2 is-secondary"></span>
+                                    </h3>
                                 </a>
-                                <div class="icon-small icon-small__primary icon-bookmark">
+                            </div>
+                            <div class="level-right">
+                                <div class="icon-small icon-small__secondary icon-pen mg-r1">
+                                    <span class="dblock"></span>
+                                </div>
+                                <div class="icon-small icon-small__secondary icon-bookmark">
                                     <span class="dblock"></span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="columns post pd-t3">
-                    <div class="column pd0">
-                        <div class="level post__author">
-                            <div class="level-left text ft-1">
-                                <span>Posted by</span>
-                                <span class="bold text is-primary">Brieuc Caillot</span>
+                    <div class="columns post pd-t3">
+                        <div class="column pd0">
+                            <div class="level post__author">
+                                <div class="level-left text ft-1">
+                                    <span>Posted by</span>
+                                    <span class="bold text is-primary is-capitalized">{{ recentword.firstname }} {{ recentword.lastname }}</span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="level post__content text ft-2">
-                            <p>
-                                Bacon ipsum dolor amet filet mignon boudin ball tip meatball. Pancetta sirloin picanha
-                                beef chicken t-bone pork chop bresaola burgdoggen jowl doner hamburger. Short ribs
-                                boudin burgdoggen
-                            </p>
-                        </div>
-                        <div class="level">
-                            <div class="level-left">
-                                <button class="button button__action button__action__like active bdr pd-l2 pd-r2 mg-r1">
-                                    <span class="button__action__number text ft-1 ">12</span>
-                                    <span class="text ft-1">Likes</span>
-                                </button>
-                                <button class="button button__action button__action__dislike bdr pd-l2 pd-r2">
-                                    <span class="button__action__number text ft-1 ">3</span>
-                                    <span class="text ft-1">Likes</span>
-                                </button>
+                            <div class="level post__content text ft-2">
+                                <p>{{ recentword.definition }}</p>
+                            </div>
+                            <div class="level">
+                                <div class="level-left">
+                                    <button class="button button__action button__action__like active bdr pd-l2 pd-r2 mg-r1">
+                                        <span class="button__action__number text ft-1 ">12</span>
+                                        <span class="text ft-1">Likes</span>
+                                    </button>
+                                    <button class="button button__action button__action__dislike bdr pd-l2 pd-r2">
+                                        <span class="button__action__number text ft-1 ">3</span>
+                                        <span class="text ft-1">Likes</span>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
             </div>
         </section>
+        {% endif %}
         {# SECTION WORD OF THE DAY #}
         <section class="section pd-t1">
             <div class="container">
@@ -116,14 +117,14 @@
                 <div class="columns">
                     <div class="column pd0">
                         <ul class="text ft-2 pd-t2">
-                            {% for name in names %}
+                            {% for word in words %}
                                 <li class="pd-b1">
                                     <div class="level is-mobile">
-                                        <a href="/definition?word={{ name.name }}" class="level-left">
-                                            <span class="text is-secondary">{{ name.name }}</span>
+                                        <a href="/definition?word={{ word.name }}" class="level-left">
+                                            <span class="text is-secondary is-capitalized">{{ word.name }}</span>
                                         </a>
                                         <div class="level-right">
-                                            <a href="/write?word={{ name.name }}" class="icon-small icon-small__primary icon-pen mg-r1">
+                                            <a href="/write?word={{ word.name }}" class="icon-small icon-small__primary icon-pen mg-r1">
                                                 <span class="dblock"></span>
                                             </a>
                                             <div class="icon-small icon-small__primary icon-bookmark icon-bookmark">
@@ -139,4 +140,8 @@
             </div>
         </section>
     </main>
+{% endblock %}
+
+{% block customScript %}
+    <script src="assets/js/templates/definition.js"></script>
 {% endblock %}
