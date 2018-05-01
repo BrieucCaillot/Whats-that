@@ -300,6 +300,20 @@ app.get('/modify', (req, res) => {
 	wr('Modify page')
 })
 
+app.post('/modify', (req, res) => {
+	if (req.body.newpassword === req.body.newpassword2) {
+		var hash = bcrypt.hashSync(req.body.newpassword, 10);
+		let sql = 'INSERT INTO user(`firstname`, `lastname`, `email`, `password`, `modified`) VALUES("' + req.body.firstname + '", "' + req.body.lastname + '", "' + req.body.email + '", "' + hash + '", "' + myDate + '")';
+		db.query(sql, (err, result) => {
+			if (err) throw err;
+			wr('Modification du profil : ' + result);
+			res.send('Vos informations ont bien été modifiées');
+		})
+	} else {
+		res.send('Vous devez utiliser les nouveaux mots de passe ne correspondent pas')
+	}
+});
+
 app.get('/disconnect', (req, res) => {
 	if (sessionData != undefined) {
 		wr(sessionData)

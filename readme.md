@@ -15,13 +15,14 @@ Informations :
 
 > **Commands:**
 
-> 1. You need to have pm2 installed globaly on your computer
+> 1. You need to install these commands globaly
 > - > npm install -g pm2
+> - > npm install -g grunt
 >
 > 2. Run this command to install dependencies in package.json
 > - > npm install
 > 3. Run this command to start the server
-> - > npm run dev
+> - > npm run start
 > 4. You should be able to see this project on your localhost port 1337
 > - > server running http://localhost:1337
 

@@ -26,7 +26,7 @@
                         </div>
                     </div>
                 </div>
-                <form action="/signup" method="POST">
+                <form action="/modify" method="POST">
                     <div class="columns">
                         <div class="column">
                             <div class="level is-mobile">
@@ -34,7 +34,7 @@
                                     <span class="input-custom input-custom__form input--hoshi over-hide">
                                         <input id="input-search-lastname"
                                                class="input__field input__field--hoshi text is-secondary is-size-6"
-                                               type="text" value="{{ user.lastname }}"/>
+                                               type="text" name="lastname" value="{{ user.lastname }}"/>
                                         <label for="input-search-lastname"
                                                class="input__label input__label--hoshi input__label--hoshi-color-1">
                                             <span class="input__label-content input__label-content--hoshi text ft-1 is-secondary">Nom</span>
@@ -45,7 +45,7 @@
                                     <span class="input-custom input-custom__form input--hoshi over-hide">
                                         <input id="input-search-firstname"
                                                class="input__field input__field--hoshi text is-secondary is-size-6"
-                                               type="text" value="{{ user.firstname }}"/>
+                                               type="text" name="firstname" value="{{ user.firstname }}"/>
                                         <label for="input-search-firstname"
                                                class="input__label input__label--hoshi input__label--hoshi-color-1">
                                             <span class="input__label-content input__label-content--hoshi text ft-1 is-secondary">Prénom</span>
@@ -62,7 +62,7 @@
                                     <span class="input-custom input-custom__form input--hoshi over-hide">
                                         <input id="input-search-email"
                                                class="input__field input__field--hoshi text is-secondary is-size-6"
-                                               type="email" value="{{ user.email }}"/>
+                                               type="email" required name="email" value="{{ user.email }}"/>
                                         <label for="input-search-email"
                                                class="input__label input__label--hoshi input__label--hoshi-color-1">
                                             <span class="input__label-content input__label-content--hoshi text ft-1 is-secondary">Email</span>
@@ -79,7 +79,7 @@
                                     <span class="input-custom input-custom__form input--hoshi over-hide">
                                         <input id="input-search-oldpassword"
                                                class="input__field input__field--hoshi text is-secondary is-size-6"
-                                               type="password"/>
+                                               type="password" required name="oldpassword"/>
                                         <label for="input-search-oldpassword"
                                                class="input__label input__label--hoshi input__label--hoshi-color-1">
                                             <span class="input__label-content input__label-content--hoshi text ft-1 is-secondary">Ancien mot de passe</span>
@@ -96,7 +96,7 @@
                                     <span class="input-custom input-custom__form input--hoshi over-hide">
                                         <input id="input-search-newpassword"
                                                class="input__field input__field--hoshi text is-secondary is-size-6"
-                                               type="password"/>
+                                               type="password" required name="newpassword"/>
                                         <label for="input-search-newpassword"
                                                class="input__label input__label--hoshi input__label--hoshi-color-1">
                                             <span class="input__label-content input__label-content--hoshi text ft-1 is-secondary">Nouveau mot de passe</span>
@@ -111,10 +111,10 @@
                             <div class="level is-mobile">
                                 <div class="level-item p-rel">
                                     <span class="input-custom input-custom__form input--hoshi over-hide">
-                                        <input id="input-search-renewpassword"
+                                        <input id="input-search-renewpassword2"
                                                class="input__field input__field--hoshi text is-secondary is-size-6"
-                                               type="password"/>
-                                        <label for="input-search-renewpassword"
+                                               type="password" required name="newpassword2"/>
+                                        <label for="input-search-renewpassword2"
                                                class="input__label input__label--hoshi input__label--hoshi-color-1">
                                             <span class="input__label-content input__label-content--hoshi text ft-1 is-secondary">Confirmer le nouveau mot de passe</span>
                                         </label>
