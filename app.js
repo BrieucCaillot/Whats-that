@@ -129,13 +129,32 @@ app.get('/definition', (req, res) => {
 	});
 })
 
+app.get('/api/test', (req, res) => {
+	let sql = "SELECT * FROM word w JOIN user u on w.user_id = u.id WHERE w.`name` = 'Iteration' AND w.user_id = u.id";
+	db.query(sql, (err, results, fields) => {
+		res.send(results)
+		wr(results)
+	})
+});
+
 app.get('/write', (req, res) => {
+	wr('write page')
 	if (sessionData != undefined) {
-		res.render(views('write'))
+		let word = req.param('word')
+		let sql = "SELECT name FROM word WHERE name = '" + word + "' "
+		db.query(sql, (err, results, fields) => {
+			if (err) throw err;
+			let word = results[0]
+			wr(JSON.stringify(word))
+			res.render(views('write'), {
+				word: word,
+			});
+		});
 	} else {
-		res.redirect('/welcome')
+		res.redirect('/')
 	}
 })
+
 
 app.post('/write', (req, res) => {
 	wr(sessionData)
@@ -147,7 +166,6 @@ app.post('/write', (req, res) => {
 
 			var definition = req.body.definition;
 			var definitionstr = definition.replace(/'/g, '\\\'');
-
 
 			let sql = "INSERT INTO word (`user_id`, `name`, `definition`, `created`, `modified`) VALUES (" + sessionData.token + ", '" + req.body.searchHidden + "', '" + definitionstr + "', '" + myDate + "', '" + myDate + "')";
 			db.query(sql, (err, results, fields) => {
@@ -163,6 +181,7 @@ app.post('/write', (req, res) => {
 	}
 
 })
+
 
 app.get('/results', (req, res) => {
 	res.render(views('results'))

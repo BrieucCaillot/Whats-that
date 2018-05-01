@@ -1,6 +1,6 @@
 {% extends './_layout.twig' %}
 
-{% set title = 'Homepage' %}
+{% set title = 'Write' %}
 
 {% block content %}
     <main>
@@ -22,7 +22,7 @@
                                     <span class="input-custom input-custom__search input--hoshi over-hide">
                                         <input id="input-search"
                                                class="input__field input__field--hoshi text is-white is-size-6"
-                                               type="text" name="search"/>
+                                               type="text" name="search" value="{{ word.name }}"/>
                                         <label for="input-search"
                                                class="input__label input__label--hoshi input__label--hoshi-color-1">
                                             <span class="input__label-content input__label-content--hoshi text ft-1 is-white">Rechercher</span>
