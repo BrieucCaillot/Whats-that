@@ -12,7 +12,7 @@
                         <div class="level is-mobile">
                             <div class="level-left">
                                 <h3 class="title">
-                                    <p class="word-definiton is-hidden">{{ words[0].name }}</p>
+                                    <p class="word-definiton is-hidden">{{ name }}</p>
                                     <span id="wordFirst" class="text ft-3 is-size-1 is-primary"></span>
                                     <span id="wordSecond" class="text ft-2 is-secondary"></span>
                                 </h3>
@@ -58,4 +58,8 @@
             </div>
         </section>
     </main>
+{% endblock %}
+
+{% block customScript %}
+    <script src="assets/js/templates/definition.js"></script>
 {% endblock %}

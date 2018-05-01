@@ -121,10 +121,12 @@ app.get('/definition', (req, res) => {
 	let sql = "SELECT * FROM word w JOIN user u WHERE w.`name` = '" + word + "' AND w.user_id = u.id"
 	db.query(sql, (err, results, fields) => {
 		if (err) throw err;
-		wr(JSON.stringify(results))
 		let words = results
+		let name = results[0].name
+		wr(JSON.stringify(name))
 		res.render(views('definition'), {
 			words: words,
+			name: name
 		});
 	});
 })

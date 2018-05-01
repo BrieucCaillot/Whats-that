@@ -4,44 +4,49 @@ module.exports = function (grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
-        browserify: {
-            dist: {
-                files: {
-                    'src/views/assets/js/script.min.js': ['src/views/assets/js/minified/**.min.js']
-                },
-                options: {
-                    transform: ['babelify'],
-                    browserifyOptions: {
-                        debug: true,
-                    }
-                }
-            }
-        },
-
-        uglify: {
-            build: {
-                files: [
-                    {
-                        expand: false,
-                        //cwd: 'src/views/assets/js/components',
-                        src: ['src/views/assets/js/components/*.js'],
-                        dest: 'src/views/assets/js/minified/components.min.js'
-                    },
-                    {
-                        expand: false,
-                        //cwd: 'src/views/assets/js/templates',
-                        src: ['src/views/assets/js/templates/*.js'],
-                        dest: 'src/views/assets/js/minified/templates.min.js'
-                    },
-                    {
-                        expand: false,
-                        //cwd: 'src/views/assets/js/vendors',
-                        src: ['src/views/assets/js/vendors/*.js'],
-                        dest: 'src/views/assets/js/minified/vendors.min.js'
-                    }
-                ]
-            }
-        },
+	    browserify: {
+		    development: {
+			    src: [
+				    "src/views/assets/js/components/components.js",
+				    "src/views/assets/js/templates/templates.js"
+			    ],
+			    dest: 'src/views/assets/js/script.min.js',
+			    options: {
+				    browserifyOptions: { debug: true },
+				    transform: [["babelify", { "presets": ["es2015"] }]],
+				    plugin: [
+					    ["factor-bundle", { outputs: [
+							    "src/views/assets/js/components.min.js",
+							    "src/views/assets/js/templates.min.js"
+						    ] }]
+				    ]
+			    },
+			    watch: true,
+			    keepAlive: true
+		    },
+		    production: {
+			    src: [
+				    "src/views/assets/js/components/**.js",
+				    "src/views/assets/js/templates/**.js",
+				    "src/views/assets/js/vendors/**.js"
+			    ],
+			    dest: 'src/views/assets/js/script.js',
+			    options: {
+				    browserifyOptions: { debug: false },
+				    transform: [["babelify", { "presets": ["es2015"] }]],
+				    plugin: [
+					    ["factor-bundle", { outputs: [
+							    "src/views/assets/js/components.js",
+							    "src/views/assets/js/templates.js",
+							    "src/views/assets/js/vendors.js"
+						    ] }],
+					    ["minifyify", { map: false }]
+				    ]
+			    },
+			    watch: true,
+			    keepAlive: true
+		    }
+	    },
 
         // Grunt sprite
         svg_sprite: {
@@ -71,26 +76,17 @@ module.exports = function (grunt) {
                 }
             }
         },
-        watch: {
-            js: {
-                files: ['src/views/assets/js/**/*'],
-                tasks: ['browserify', 'uglify']
-            }
-        }
     });
 
     // Load the plugin that provides the "browserify" task.
     grunt.loadNpmTasks('grunt-browserify');
 
-    // Load the plugin that provides the "uglify" task.
-    grunt.loadNpmTasks('grunt-contrib-uglify-es');
-
     // Load the plugin "grunt svg"
     grunt.loadNpmTasks('grunt-svg-sprite');
 
-    // Load the plugin that provides the "contrib-watch" task.
-    grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.registerTask("buildDev", ['browserify:development', 'svg_sprite']);
+	grunt.registerTask("buildProd", ['browserify:production']);
 
     // Default task(s).
-    grunt.registerTask('default', ['browserify:dist', 'uglify', 'svg_sprite']);
+    // grunt.registerTask('default', ['browserify:dist', 'uglify', 'svg_sprite']);
 };
