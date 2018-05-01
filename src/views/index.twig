@@ -4,9 +4,6 @@
 
 {% block content %}
     <main>
-        {% for name in names %}
-            <p{{ name.name }}</p>
-        {% endfor %}
         {# SECTION RESEARCH #}
         <section id="search-section" class="section">
             <div class="container">
@@ -119,39 +116,22 @@
                 <div class="columns">
                     <div class="column pd0">
                         <ul class="text ft-2 pd-t2">
-                            {% for i in 0..4 %}
+                            {% for name in names %}
                                 <li class="pd-b1">
                                     <div class="level is-mobile">
-                                        <a href="/definition" class="level-left">
-                                            <span class="text is-secondary">Itération</span>
+                                        <a href="/definition?word={{ name.name }}" class="level-left">
+                                            <span class="text is-secondary">{{ name.name }}</span>
                                         </a>
                                         <div class="level-right">
                                             <a href="/write" class="icon-small icon-small__primary icon-pen mg-r1">
                                                 <span class="dblock"></span>
                                             </a>
-                                            <div class="icon-small icon-small__primary icon-bookmark icon-bookmark__active">
+                                            <div class="icon-small icon-small__primary icon-bookmark icon-bookmark">
                                                 <span class="dblock"></span>
                                             </div>
                                         </div>
                                     </div>
                                 </li>
-                            {% endfor %}
-                            {% for i in 0..6 %}
-                            <li class="pd-b1">
-                                <div class="level is-mobile">
-                                    <a href="/definition" class="level-left">
-                                        <span class="text is-secondary">Itération</span>
-                                    </a>
-                                    <div class="level-right">
-                                        <a href="/write" class="icon-small icon-small__primary icon-pen mg-r1">
-                                            <span class="dblock"></span>
-                                        </a>
-                                        <div class="icon-small icon-small__primary icon-bookmark">
-                                            <span class="dblock"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
                             {% endfor %}
                         </ul>
                     </div>

@@ -12,8 +12,9 @@
                         <div class="level is-mobile">
                             <div class="level-left">
                                 <h3 class="title">
-                                    <span class="text ft-3 is-size-1 is-primary">I</span>
-                                    <span class="text ft-2 is-secondary">tération</span>
+                                    <p class="word-definiton is-hidden">{{ words[0].name }}</p>
+                                    <span id="wordFirst" class="text ft-3 is-size-1 is-primary"></span>
+                                    <span id="wordSecond" class="text ft-2 is-secondary"></span>
                                 </h3>
                             </div>
                             <div class="level-right">
@@ -27,21 +28,17 @@
                         </div>
                     </div>
                 </div>
-                {% for i in 0..6 %}
+                {% for word in words %}
                 <div class="columns post pd-t3">
                     <div class="column pd0">
                         <div class="level post__author">
                             <div class="level-left text ft-1">
                                 <span>Posted by</span>
-                                <span class="bold text is-primary">Brieuc Caillot</span>
+                                <span class="bold text is-primary">{{ word.id }}</span>
                             </div>
                         </div>
                         <div class="level post__content text ft-2">
-                            <p>
-                                Bacon ipsum dolor amet filet mignon boudin ball tip meatball. Pancetta sirloin picanha
-                                beef chicken t-bone pork chop bresaola burgdoggen jowl doner hamburger. Short ribs
-                                boudin burgdoggen
-                            </p>
+                            <p>{{ word.definition }}</p>
                         </div>
                         <div class="level">
                             <div class="level-left">

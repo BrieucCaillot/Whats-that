@@ -107,17 +107,34 @@ app.get('/', (req, res) => {
     wr('Homepage')
     let sql = "SELECT `name`, `definition` FROM word";
     db.query(sql, (err, results, fields) => {
-        let names = JSON.stringify(results);
-        wr(names)
-	    res.render(views('index', {
-            names: names,
-        }));
+	    if (err) throw err;
+        let names = results;
+	    res.render(views('index'), {
+		    names: names
+	    });
     });
 })
 
 app.get('/definition', (req, res) => {
-    res.render(views('definition'))
+    let word = req.param('word')
+    let sql = "SELECT * FROM word WHERE name = '" + word + "'"
+    db.query(sql, (err, results, fields) => {
+	    if (err) throw err;
+        wr(JSON.stringify(results))
+        let words = results
+	    res.render(views('definition'), {
+            words: words,
+        });
+    });
 })
+
+// app.get('/definition', (req, res) => {
+// 	if (sessionData != undefined) {
+// 		res.render(views('write'))
+// 	} else {
+// 		res.redirect('/definition/Iteration')
+// 	}
+// })
 
 app.get('/write', (req, res) => {
     if (sessionData != undefined) {
