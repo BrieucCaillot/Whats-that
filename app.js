@@ -110,7 +110,6 @@ app.get('/', (req, res) => {
 		if (err) throw err;
 		let words = results;
 		let recentword = results.slice(-1)[0]
-		wr(JSON.stringify(recentword))
 		res.render(views('index'), {
 			words: words,
 			recentword: recentword
@@ -125,7 +124,6 @@ app.get('/definition', (req, res) => {
 		if (err) throw err;
 		let words = results
 		let name = results[0].name
-		wr(JSON.stringify(name))
 		res.render(views('definition'), {
 			words: words,
 			name: name
@@ -158,17 +156,14 @@ app.get('/write', (req, res) => {
 
 
 app.post('/write', (req, res) => {
-	wr(sessionData)
 	if (sessionData.token != undefined) {
 		let sql = "SELECT * FROM `user` WHERE id = " + sessionData.token;
-		wr(sql)
 		db.query(sql, (err, results, fields) => {
 			if (err) throw err;
 			let definition = req.body.definition.toLowerCase().replace(/'/g, '\\\'');
 			let name = req.body.searchHidden.toLowerCase()
 			let sql = "INSERT INTO word (`user_id`, `name`, `definition`, `created`, `modified`) VALUES (" + sessionData.token + ", '" + name + "', '" + definition + "', '" + myDate + "', '" + myDate + "')";
 			db.query(sql, (err, results, fields) => {
-				wr(definitionstr)
 				if (err) throw err;
 				wr('Nouvelle définition créee');
 				res.send('Nouvelle définition créee');
@@ -188,7 +183,6 @@ app.get('/research', (req, res) => {
 		db.query(sql, (err, results, fields) => {
 			if (err) throw err;
 			let name = results[0]
-			wr(JSON.stringify(word))
 			res.render(views('research'), {
 				name: name,
 			});
@@ -226,9 +220,7 @@ app.get('/welcome', (req, res) => {
 app.get('/signin', (req, res) => {
 	if (sessionData != undefined) {
 		res.redirect('/modify')
-		wr(sessionData)
 	} else {
-		wr(sessionData)
 		res.render(views('signin'))
 	}
 })
@@ -242,7 +234,6 @@ app.post('/signin', (req, res) => {
 				if (password === true) {
 					sessionData = req.session;
 					sessionData.token = results[0].id;
-					wr(sessionData.token)
 					res.redirect('/');
 					wr('Connexion worked out - Good password')
 				} else {
@@ -262,16 +253,14 @@ app.post('/signin', (req, res) => {
 app.get('/signup', (req, res) => {
 	if (sessionData != undefined) {
 		res.redirect('/modify')
-		wr(sessionData)
 	} else {
-		wr(sessionData)
 		res.render(views('signup'))
 	}
 })
 
 app.post('/signup', (req, res) => {
 	if (req.body.password === req.body.repassword) {
-		var hash = bcrypt.hashSync(req.body.password, 10);
+		let hash = bcrypt.hashSync(req.body.password, 10);
 		let sql = 'INSERT INTO user(`lastname`, `firstname`, `email`, `gender`, `password`, `created`, `modified`) VALUES("' + req.body.lastname + '", "' + req.body.firstname + '", "' + req.body.email + '", "' + req.body.gender + '", "' + hash + '", "' + myDate + '", "' + myDate + '")';
 		db.query(sql, (err, result) => {
 			if (err) throw err;
@@ -289,7 +278,6 @@ app.get('/modify', (req, res) => {
 		db.query(sql, (err, results, fields) => {
 			if (err) throw err;
 			let user = results[0]
-			wr(JSON.stringify(user))
 			res.render(views('modify'), {
 				user: user,
 			});
@@ -297,30 +285,36 @@ app.get('/modify', (req, res) => {
 	} else {
 		res.redirect('/welcome')
 	}
-	wr('Modify page')
 })
 
 app.post('/modify', (req, res) => {
-	if (req.body.newpassword === req.body.newpassword2) {
-		var hash = bcrypt.hashSync(req.body.newpassword, 10);
-		let sql = 'INSERT INTO user(`firstname`, `lastname`, `email`, `password`, `modified`) VALUES("' + req.body.firstname + '", "' + req.body.lastname + '", "' + req.body.email + '", "' + hash + '", "' + myDate + '")';
-		db.query(sql, (err, result) => {
-			if (err) throw err;
-			wr('Modification du profil : ' + result);
-			res.send('Vos informations ont bien été modifiées');
-		})
-	} else {
-		res.send('Vous devez utiliser les nouveaux mots de passe ne correspondent pas')
-	}
+	let sql = "SELECT `password` FROM user WHERE id = '" + sessionData.token + "' "
+	db.query(sql, (err, results, fields) => {
+		if (err) throw err;
+		let oldpassword = results[0].password
+		if (bcrypt.compareSync(req.body.oldpassword, oldpassword)) {
+			wr(JSON.stringify(oldpassword))
+			if (req.body.newpassword === req.body.newpassword2) {
+				let hash = bcrypt.hashSync(req.body.newpassword, 10);
+				let sql = 'UPDATE user SET `firstname` = "' + req.body.firstname + '", `lastname` = "' + req.body.lastname + '", `email` = "' + req.body.email + '", `password` = "' + hash + '", `modified` = "' + myDate + '" WHERE `id` = "' + sessionData.token + '" ';
+				db.query(sql, (err, result) => {
+					if (err) throw err;
+					res.send('Vos informations ont bien été modifiées');
+				})
+			} else {
+				res.send('Les nouveaux mots de passe ne correspondent pas, veuillez réessayer')
+			}
+		} else {
+			res.send('Votre ancien mot de passe ne correspond pas')
+		}
+	});
 });
 
 app.get('/disconnect', (req, res) => {
 	if (sessionData != undefined) {
-		wr(sessionData)
 		sessionData = undefined
 		res.redirect('/')
 	} else {
-		wr(sessionData)
 		res.redirect('/welcome')
 	}
 	wr('Disconnected')
