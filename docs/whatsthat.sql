@@ -40,6 +40,6 @@ ALTER TABLE `word_bookmark` ADD CONSTRAINT `word_bookmark_fk1` FOREIGN KEY (`use
 
 INSERT INTO user(`lastname`, `firstname`, `email`, `gender`, `password`, `created`, `modified`) VALUES('Caillot', 'Brieuc', 'brieuc@gmail.com', 'M', '$2b$10$iNLsjbTziwM5ryPBo/ju8ObgTtY6nFq6v7/7NTJAvy9KamNgbiyKu', '2018-04-26 20:08:27', '2018-04-26 20:08:27');
 INSERT INTO user(`lastname`, `firstname`, `email`, `gender`, `password`, `created`, `modified`) VALUES('Bernard', 'Jean-Michel', 'jeanmichel@gmail.com', 'M', '$2b$10$iNLsjbTziwM5ryPBo/ju8ObgTtY6nFq6v7/7NTJAvy9KamNgbiyKu', '2018-04-26 20:08:27', '2018-04-26 20:08:27');
-
-INSERT INTO word(`user_id`, `name`, `definition`, `created`, `modified`) VALUES (8, 'Itération','En informatique, procédé de calcul répétitif qui boucle jusqu''à ce qu''une condition particulière soit remplie.', '2018-04-26 20:08:27', '2018-04-26 20:08:27');
-INSERT INTO word(`user_id`, `name`, `definition`, `created`, `modified`) VALUES (9, 'Itération','Méthode de résolution d''une équation par approximations successives.', '2018-04-26 20:08:27', '2018-04-26 20:08:27');
+--
+INSERT INTO word(`user_id`, `name`, `definition`, `created`, `modified`) VALUES (1, 'itération','en informatique, procédé de calcul répétitif qui boucle jusqu''à ce qu''une condition particulière soit remplie.', '2018-04-26 20:08:27', '2018-04-26 20:08:27');
+INSERT INTO word(`user_id`, `name`, `definition`, `created`, `modified`) VALUES (9, 'itération','méthode de résolution d''une équation par approximations successives.', '2018-04-26 20:08:27', '2018-04-26 20:08:27');

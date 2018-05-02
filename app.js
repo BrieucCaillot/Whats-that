@@ -168,7 +168,8 @@ app.post('/write', (req, res) => {
 			db.query(sql, (err, results, fields) => {
 				if (err) throw err;
 				wr('Nouvelle définition créee');
-				res.send('Nouvelle définition créee');
+				wr(name)
+				res.redirect('/definition?word=' + name)
 			})
 		})
 	} else {
