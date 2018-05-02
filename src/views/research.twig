@@ -34,6 +34,15 @@
                                 </div>
                             </div>
                         </form>
+                        <ul id="searchResult">
+                            <li class="pd-b1">
+                                <div class="level is-mobile">
+                                    <a href="/definition?word={{ word.name }}" class="level-left">
+                                        <span class="text is-secondary is-capitalized">{{ word.name }}</span>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -77,4 +86,8 @@
             </div>
         </section>
     </main>
+{% endblock %}
+
+{% block customScript %}
+    <script src="assets/js/templates/definition.js"></script>
 {% endblock %}

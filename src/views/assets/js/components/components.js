@@ -10,6 +10,37 @@ inputContainer.map((elem) => {
 		});
 	});
 });
+let inputSearch = document.querySelector('#input-search')
+let xmlhttp = new XMLHttpRequest();
+let url = "/api/test";
+inputSearch.addEventListener('keyup', () => {
+	if (inputSearch.value.length >= 1) {
+		xmlhttp.onreadystatechange = function () {
+			if (this.readyState == 4 && this.status == 200) {
+				let myArr = JSON.parse(this.responseText);
+				let inputValue = inputSearch.value;
+				let myFunction = () => {
+					myArr.map((elem) => {
+						if (elem.name.indexOf(inputValue) > -1) {
+							document.querySelector("#searchResult").innerHTML = `
+							<li class="pd-b1">
+                                <a class="text is-white is-capitalized" href="/definition?word=${elem.name}">${elem.name}</a>
+							</li>`
+						}
+					})
+				}
+				myFunction();
+			}
+		};
+		xmlhttp.open("GET", url, true);
+		xmlhttp.send();
+	} else {
+		document.querySelector("#searchResult").innerHTML = " "
+	}
+
+})
+
+
 
 
 

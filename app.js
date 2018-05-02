@@ -134,7 +134,7 @@ app.get('/definition', (req, res) => {
 })
 
 app.get('/api/test', (req, res) => {
-	let sql = "SELECT * FROM word w JOIN user u on w.user_id = u.id WHERE w.`name` = 'Iteration' AND w.user_id = u.id";
+	let sql = "SELECT DISTINCT w.name FROM word w;"
 	db.query(sql, (err, results, fields) => {
 		res.send(results)
 	})
