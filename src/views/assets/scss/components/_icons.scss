@@ -40,6 +40,13 @@
         @include custom-img(0.7, -13px -13px);
       }
     }
+    &.icon-pen {
+      span {
+        @extend .svg-assets--sprites--pen-primary;
+        @extend .svg-assets--sprites--pen-primary-dims;
+        @include custom-img(0.7, -10px -10px);
+      }
+    }
   }
   &__primary {
     background-color: $primary;

@@ -4,7 +4,7 @@
 
 .svg-assets--sprites--bookmark-primary {
 	@extend %svg-common;
-	background-position: 78.46153846153847% 0;
+	background-position: 41.1764705882353% 99.79166666666667%;
 }
 
 .svg-assets--sprites--bookmark-primary-dims {
@@ -14,7 +14,7 @@
 
 .svg-assets--sprites--bookmark-white {
 	@extend %svg-common;
-	background-position: 78.46153846153847% 40.42553191489362%;
+	background-position: 75% 40.625%;
 }
 
 .svg-assets--sprites--bookmark-white-dims {
@@ -24,7 +24,7 @@
 
 .svg-assets--sprites--bookmarked-primary {
 	@extend %svg-common;
-	background-position: 100% 0;
+	background-position: 0 99.79166666666667%;
 }
 
 .svg-assets--sprites--bookmarked-primary-dims {
@@ -34,7 +34,7 @@
 
 .svg-assets--sprites--bookmarked-white {
 	@extend %svg-common;
-	background-position: 100% 40.42553191489362%;
+	background-position: 20.58823529411765% 99.79166666666667%;
 }
 
 .svg-assets--sprites--bookmarked-white-dims {
@@ -44,7 +44,7 @@
 
 .svg-assets--sprites--dislike-white {
 	@extend %svg-common;
-	background-position: 47.95539033457249% 0;
+	background-position: 45.42253521126761% 0;
 }
 
 .svg-assets--sprites--dislike-white-dims {
@@ -62,9 +62,19 @@
 	height: 25.4px;
 }
 
+.svg-assets--sprites--pen-primary {
+	@extend %svg-common;
+	background-position: 40.32% 53.473684210526315%;
+}
+
+.svg-assets--sprites--pen-primary-dims {
+	width: 19.5px;
+	height: 19.5px;
+}
+
 .svg-assets--sprites--pen-white {
 	@extend %svg-common;
-	background-position: 42.35294117647059% 54.623655913978496%;
+	background-position: 81.6% 0;
 }
 
 .svg-assets--sprites--pen-white-dims {
@@ -74,7 +84,7 @@
 
 .svg-assets--sprites--search-primary {
 	@extend %svg-common;
-	background-position: 26.470588235294116% 87.0909090909091%;
+	background-position: 99.29577464788733% 0;
 }
 
 .svg-assets--sprites--search-primary-dims {
@@ -84,7 +94,7 @@
 
 .svg-assets--sprites--thumbs-up-white {
 	@extend %svg-common;
-	background-position: 0 58.39080459770115%;
+	background-position: 0 57.07865168539326%;
 }
 
 .svg-assets--sprites--thumbs-up-white-dims {
@@ -94,7 +104,7 @@
 
 .svg-assets--sprites--user-primary {
 	@extend %svg-common;
-	background-position: 0 99.79166666666667%;
+	background-position: 65.625% 97.75510204081633%;
 }
 
 .svg-assets--sprites--user-primary-dims {
