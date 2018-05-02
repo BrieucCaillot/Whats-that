@@ -102,17 +102,19 @@ db.connect((err) => {
 
 var sessionData;
 
-// Routes
+// Routes`
 app.get('/', (req, res) => {
-	wr('Homepage')
-	let sql = "SELECT * FROM word w JOIN user u WHERE w.user_id = u.id";
+	let sql = "SELECT DISTINCT w.name FROM word w";
 	db.query(sql, (err, results, fields) => {
 		if (err) throw err;
 		let words = results;
-		let recentword = results.slice(-1)[0]
-		res.render(views('index'), {
-			words: words,
-			recentword: recentword
+		let sql = "SELECT * FROM word w JOIN user u WHERE w.user_id = u.id;";
+		db.query(sql, (err, results, fields) => {
+			let recentword = results.slice(-1)[0]
+			res.render(views('index'), {
+				words: words,
+				recentword: recentword
+			});
 		});
 	});
 })
@@ -195,7 +197,7 @@ app.get('/research', (req, res) => {
 
 app.get('/bookmarks', (req, res) => {
 	if (sessionData != undefined) {
-		let sql = "SELECT * FROM word w WHERE w.user_id = '" + sessionData.token + "' "
+		let sql = "SELECT DISTINCT w.name FROM word w WHERE w.user_id = '" + sessionData.token + "' "
 		db.query(sql, (err, results, fields) => {
 			if (err) throw err;
 			let words = results
@@ -209,7 +211,7 @@ app.get('/bookmarks', (req, res) => {
 })
 
 app.get('/welcome', (req, res) => {
-		wr('Welcome page')
+	wr('Welcome page')
 	if (sessionData != undefined) {
 		res.redirect('/modify')
 	} else {
