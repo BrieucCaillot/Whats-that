@@ -26,21 +26,18 @@ module.exports = function (grunt) {
 		    },
 		    production: {
 			    src: [
-				    "src/views/assets/js/components/**.js",
-				    "src/views/assets/js/templates/**.js",
-				    "src/views/assets/js/vendors/**.js"
+				    "src/views/assets/js/components/components.js",
+				    "src/views/assets/js/templates/templates.js"
 			    ],
-			    dest: 'src/views/assets/js/script.js',
+			    dest: 'src/views/assets/js/script.min.js',
 			    options: {
-				    browserifyOptions: { debug: false },
+				    browserifyOptions: { debug: true },
 				    transform: [["babelify", { "presets": ["es2015"] }]],
 				    plugin: [
 					    ["factor-bundle", { outputs: [
-							    "src/views/assets/js/components.js",
-							    "src/views/assets/js/templates.js",
-							    "src/views/assets/js/vendors.js"
-						    ] }],
-					    ["minifyify", { map: false }]
+							    "src/views/assets/js/components.min.js",
+							    "src/views/assets/js/templates.min.js"
+						    ] }]
 				    ]
 			    },
 			    watch: true,
