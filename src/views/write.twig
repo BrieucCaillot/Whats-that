@@ -64,6 +64,9 @@
                             </div>
                         </div>
                     </div>
+                    {% if message is defined %}
+                    <div class="columns">{{ message }}</div>
+                    {% endif %}
                     <div class="columns pd-t3">
                         <div class="column pd0">
                             <div class="level">

@@ -133,13 +133,6 @@ app.get('/definition', (req, res) => {
 	});
 })
 
-app.get('/api/test', (req, res) => {
-	let sql = "SELECT DISTINCT w.name FROM word w;"
-	db.query(sql, (err, results, fields) => {
-		res.send(results)
-	})
-});
-
 app.get('/write', (req, res) => {
 	if (sessionData != undefined) {
 		let word = req.param('word')
@@ -162,15 +155,29 @@ app.post('/write', (req, res) => {
 		let sql = "SELECT * FROM `user` WHERE id = " + sessionData.token;
 		db.query(sql, (err, results, fields) => {
 			if (err) throw err;
-			let definition = req.body.definition.toLowerCase().replace(/'/g, '\\\'');
-			let name = req.body.searchHidden.toLowerCase()
-			let sql = "INSERT INTO word (`user_id`, `name`, `definition`, `created`, `modified`) VALUES (" + sessionData.token + ", '" + name + "', '" + definition + "', '" + myDate + "', '" + myDate + "')";
-			db.query(sql, (err, results, fields) => {
-				if (err) throw err;
-				wr('Nouvelle définition créee');
-				wr(name)
-				res.redirect('/definition?word=' + name)
-			})
+			if (req.body.searchHidden.length > 0) {
+				req.body.searchHidden.toLowerCase()
+				if (req.body.definition.length > 30) {
+					let definition = req.body.definition.toLowerCase().replace(/'/g, '\\\'');
+					let sql = "INSERT INTO word (`user_id`, `name`, `definition`, `created`, `modified`) VALUES (" + sessionData.token + ", '" + name + "', '" + definition + "', '" + myDate + "', '" + myDate + "')";
+					db.query(sql, (err, results, fields) => {
+						if (err) throw err;
+						wr('Nouvelle définition créee');
+						wr(name)
+						res.redirect('/definition?word=' + name)
+					})
+				} else {
+					let message = "La définition est trop courte"
+					res.render(views('write'), {
+						message: message,
+					});
+				}
+			} else {
+				let message = "Vous devez rentrer le nom d'une définition à définir"
+				res.render(views('write'), {
+					message: message,
+				});
+			}
 		})
 	} else {
 		res.redirect('/welcome')
@@ -239,16 +246,23 @@ app.post('/signin', (req, res) => {
 					sessionData.token = results[0].id;
 					res.redirect('/');
 					wr('Connexion worked out - Good password')
+				} else if (password === false) {
+					let message = 'Le mot de passe est incorrect'
+					res.render(views('signin'), {
+						message: message,
+					});
 				} else {
-					res.render(views('signin', {
-						checkPassword: password
-					}))
-					wr('Connexion didn\'t worked out - Wrong password')
+					let message = "Pour pouvoir donner une définition et sauvegarder des mots, vous devez d’abord vous inscrire."
+					res.render(views('signin'), {
+						message: message,
+					});
 				}
 			})
 		} else {
-			res.render(views('signin'));
-			wr('Vous n\'êtes pas inscrit, ou l\'email renseignée n\'est pas bonne');
+			let message = "Vous n\'êtes pas inscrit, ou l\'email renseignée n\'est pas bonne"
+			res.render(views('signin'), {
+				message: message,
+			});
 		}
 	});
 })
@@ -257,22 +271,75 @@ app.get('/signup', (req, res) => {
 	if (sessionData != undefined) {
 		res.redirect('/modify')
 	} else {
-		res.render(views('signup'))
+		let message = "Pour pouvoir donner une définition et sauvegarder des mots, vous devez d’abord vous inscrire";
+		res.render(views('signup'), {
+			message: message,
+		});
 	}
 })
 
 app.post('/signup', (req, res) => {
-	if (req.body.password === req.body.repassword) {
-		let hash = bcrypt.hashSync(req.body.password, 10);
-		let sql = 'INSERT INTO user(`lastname`, `firstname`, `email`, `gender`, `password`, `created`, `modified`) VALUES("' + req.body.lastname + '", "' + req.body.firstname + '", "' + req.body.email + '", "' + req.body.gender + '", "' + hash + '", "' + myDate + '", "' + myDate + '")';
-		db.query(sql, (err, result) => {
-			if (err) throw err;
-			wr('Insertion reussie : ' + result);
-			res.send('You are now signed up');
-		})
-	} else {
-		res.send('Use the same password please')
-	}
+	let regExpEmail = /^[a-zA-Z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/;
+	let sql = "SELECT `email` FROM user u WHERE u.email = '" + req.body.email + "';"
+	db.query(sql, (err, results, fields) => {
+		if (err) throw err;
+		if (results.length == 0) {
+			//req.body.email.length > 3 && req.body.email.match(regExpEmail
+			if (req.body.email.length > 3 && req.body.email.match(regExpEmail)) {
+				if (req.body.password === req.body.repassword) {
+					if (req.body.lastname.length > 2 && req.body.firstname.length > 2) {
+						let hash = bcrypt.hashSync(req.body.password, 10);
+						let sql = 'INSERT INTO user(`lastname`, `firstname`, `email`, `gender`, `password`, `created`, `modified`) VALUES("' + req.body.lastname + '", "' + req.body.firstname + '", "' + req.body.email + '", "' + req.body.gender + '", "' + hash + '", "' + myDate + '", "' + myDate + '")';
+						db.query(sql, (err, result) => {
+							if (err) throw err;
+							wr('Insertion reussie : ' + result);
+							res.redirect('/')
+						})
+					} else {
+						let message = "Le nom et/ou prénom ne sont pas valides"
+						res.render(views('signup'), {
+							message: message,
+						});
+					}
+				} else {
+					let message = "Utilisez le même mot de passe"
+					res.render(views('signup'), {
+						message: message,
+					});
+				}
+			} else {
+				let message = "L\'email rentré est invalide"
+				res.render(views('signup'), {
+					message: message,
+				});
+			}
+		} else {
+			let messageEmail1 = "L\'email renseigné est déja utilisé, vous pouvez vous"
+			let messageEmail2 = "connecter"
+			res.render(views('signup'), {
+				messageEmail1: messageEmail1,
+				messageEmail2: messageEmail2
+			});
+		}
+	})
+});
+
+app.get('/api/test', (req, res) => {
+	let sql = "SELECT `email` FROM user u WHERE u.email = 'brieuc@gmail.com'"
+	db.query(sql, (err, results, fields) => {
+		if (results) {
+			res.send(results[0].email)
+		} else {
+			wr('nope')
+		}
+	})
+});
+
+app.get('/api/autocomplete', (req, res) => {
+	let sql = "SELECT DISTINCT w.name FROM word w;"
+	db.query(sql, (err, results, fields) => {
+		res.send(results)
+	})
 });
 
 app.get('/modify', (req, res) => {

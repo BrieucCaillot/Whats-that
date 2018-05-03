@@ -16,16 +16,17 @@
                         </div>
                     </div>
                 </div>
-                <div class="columns pd-t2">
-                    <div class="column pd0">
-                        <div class="level">
-                            <p class="text ft-2 is-secondary">
-                                Pour pouvoir donner une définition et sauvegarder des mots, vous devez d’abord vous
-                                inscrire.
-                            </p>
+                {% if messageEmail1 is defined  %}
+                    <div class="columns pd-t2">
+                        <div class="column pd0">
+                            <div class="level">
+                                <p class="text ft-2 is-secondary">
+                                    {{ messageEmail1 }} <a href="/signin" class="text is-primary">{{ messageEmail2 }}</a>
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
+                {% endif %}
                 <form action="/signup" method="POST">
                     <div class="columns">
                         <div class="column">
@@ -34,7 +35,7 @@
                                     <span class="input-custom input-custom__form input--hoshi over-hide">
                                         <input id="input-search-lastname"
                                                class="input__field input__field--hoshi text is-secondary is-size-6"
-                                               type="text" name="lastname"/>
+                                               type="text" required name="lastname"/>
                                         <label for="input-search-lastname"
                                                class="input__label input__label--hoshi input__label--hoshi-color-1">
                                             <span class="input__label-content input__label-content--hoshi text ft-1 is-secondary">Nom</span>
@@ -45,7 +46,7 @@
                                     <span class="input-custom input-custom__form input--hoshi over-hide">
                                         <input id="input-search-firstname"
                                                class="input__field input__field--hoshi text is-secondary is-size-6"
-                                               type="text" name="firstname"/>
+                                               type="text" required name="firstname"/>
                                         <label for="input-search-firstname"
                                                class="input__label input__label--hoshi input__label--hoshi-color-1">
                                             <span class="input__label-content input__label-content--hoshi text ft-1 is-secondary">Prénom</span>
@@ -62,7 +63,7 @@
                                     <span class="input-custom input-custom__form input--hoshi over-hide">
                                         <input id="input-search-email"
                                                class="input__field input__field--hoshi text is-secondary is-size-6"
-                                               type="email" name="email"/>
+                                               type="email" required name="email"/>
                                         <label for="input-search-email"
                                                class="input__label input__label--hoshi input__label--hoshi-color-1">
                                             <span class="input__label-content input__label-content--hoshi text ft-1 is-secondary">Email</span>
@@ -76,11 +77,11 @@
                         <div class="column">
                             <div class="control">
                                 <label class="radio text ft-1 is-secondary">
-                                    <input type="radio" name="gender" value="M">
+                                    <input type="radio" required name="gender" value="M">
                                     Homme
                                 </label>
                                 <label class="radio text ft-1 is-secondary">
-                                    <input type="radio" name="gender" value="F">
+                                    <input type="radio" required name="gender" value="F">
                                     Femme
                                 </label>
                             </div>
@@ -93,7 +94,7 @@
                                     <span class="input-custom input-custom__form input--hoshi over-hide">
                                         <input id="input-search-password"
                                                class="input__field input__field--hoshi text is-secondary is-size-6"
-                                               type="password" name="password"/>
+                                               type="password" required name="password"/>
                                         <label for="input-search-password"
                                                class="input__label input__label--hoshi input__label--hoshi-color-1">
                                             <span class="input__label-content input__label-content--hoshi text ft-1 is-secondary">Mot de passe</span>
@@ -110,7 +111,7 @@
                                     <span class="input-custom input-custom__form input--hoshi over-hide">
                                         <input id="input-search-repassword"
                                                class="input__field input__field--hoshi text is-secondary is-size-6"
-                                               type="password" name="repassword"/>
+                                               type="password" required name="repassword"/>
                                         <label for="input-search-repassword"
                                                class="input__label input__label--hoshi input__label--hoshi-color-1">
                                             <span class="input__label-content input__label-content--hoshi text ft-1 is-secondary">Confirmer mot de passe</span>

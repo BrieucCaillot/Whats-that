@@ -4,7 +4,7 @@
 
 {% block content %}
     <main>
-        {# SECTION SIGNUP #}
+        {# SECTION SIGNIN #}
         <section class="section pd-t1">
             <div class="container">
                 <div class="columns pd-t2 title__underlined">
@@ -16,21 +16,16 @@
                         </div>
                     </div>
                 </div>
+                {% if message is defined %}
                 <div class="columns pd-t2">
                     <div class="column pd0">
                         <div class="level">
                             <p class="text ft-2 is-secondary">
-                                Pour pouvoir donner une définition et sauvegarder des mots, vous devez d’abord vous
-                                inscrire.
+                               {{ message }}
                             </p>
                         </div>
                     </div>
                 </div>
-                {% if checkPassword == false %}
-                    <h2>Vous n'êtes pas inscrit, ou l'email renseignée n'est pas bonne</h2>
-                {% endif %}
-                {% if results.length < 0 %}
-                    <h2>Vous devez vous inscrire</h2>
                 {% endif %}
                 <form action="/signin" method="POST">
                     <div class="columns">
